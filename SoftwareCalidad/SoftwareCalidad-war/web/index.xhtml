@@ -1,14 +1,64 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+        <f:facet name="middle">
+            <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+            <h:outputStylesheet name="css/dashboard.css" />
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+            <h:outputScript name="bootstrap/js/bootstrap.js" />
+        </f:facet>
+        <f:facet name="last">
+            <h:outputStylesheet name="css/font-awesome.css" />
+        </f:facet>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+        <!--login modal-->
+        <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h1 class="text-center">Login</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h:form class="form col-md-12 center-block">
+                            <div class="form-group">
+
+                                <h:outputText value="Username" styleClass="sr-only"/>
+                                <h:inputText id="username" value="#{loginBean.user}" styleClass="form-control input-lg"></h:inputText>
+                                <h:message for="username"></h:message>
+                            </div>
+                            <div class="form-group">
+
+                                <h:outputText value="Password" styleClass="sr-only" />
+                                <h:inputSecret id="password" value="#{loginBean.pwd}" styleClass="form-control input-lg"></h:inputSecret>
+                                <h:message for="password"></h:message>
+                            </div>
+                            <div class="form-group">
+
+                                <h:commandButton action="#{loginBean.doLogin()}"
+                                                 value="Sign In" styleClass="btn btn-primary btn-lg btn-block"></h:commandButton>
+                                <!--<span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>-->
+                            </div>
+                        </h:form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-md-12">
+                            <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>-->
+                        </div>	
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- script references -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </h:body>
 </html>
-
