@@ -7,6 +7,7 @@ package com.softwarecalidad.negocio;
 
 import com.softwarecalidad.DAO.MateriaDAO;
 import com.softwarecalidad.entidades.Materia;
+import com.softwarecalidad.utilidades.ResultadoOperation;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -22,13 +23,21 @@ public class MateriaEJB implements MateriaEJBLocal {
     MateriaDAO materiaDAO;
 
     @Override
-    public boolean adicionarMateria(Materia nuevaMateria) {
-        boolean resultado = false;
-        try {
-            this.materiaDAO.create(nuevaMateria);
-            resultado = Boolean.TRUE;
-        } catch (Exception e) {
-            System.out.println("Error al adicionar materia");
+    public ResultadoOperation adicionarMateria(Materia nuevaMateria) {
+        ResultadoOperation resultado = new ResultadoOperation();
+        resultado.setResultado(true);
+        try{
+            Materia result = this.materiaDAO.buscarMateriaByIdMateria(nuevaMateria.getCodigo());
+            if(result != null){
+                resultado.setResultado(false);
+                resultado.setMensaje("La materia con el id " + nuevaMateria.getCodigo() + " ya se encuentra registrada");
+            } else {
+                this.materiaDAO.create(nuevaMateria);
+            }
+        } catch(Exception e){
+            resultado.setResultado(false);
+            resultado.setMensaje("error al crear materia en capa de negocio ResultadoOperation");
+            System.out.println("Error al crear materia ");
         }
         return resultado;
     }

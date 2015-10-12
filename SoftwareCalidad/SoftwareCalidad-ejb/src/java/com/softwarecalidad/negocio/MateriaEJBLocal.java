@@ -19,4 +19,3 @@ public interface MateriaEJBLocal {
     public boolean adicionarMateria(Materia nuevaMateria);
 
     public List<Materia> getAllMaterias();
-}
