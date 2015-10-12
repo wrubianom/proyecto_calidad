@@ -41,5 +41,9 @@ public class MateriaEJB implements MateriaEJBLocal {
         }
         return resultado;
     }
-    
+
+    @Override
+    public List<Materia> getAllMaterias() {
+        return this.materiaDAO.findAll();
+    }
 }
