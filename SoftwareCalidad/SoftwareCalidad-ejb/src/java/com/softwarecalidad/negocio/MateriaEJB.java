@@ -33,6 +33,8 @@ public class MateriaEJB implements MateriaEJBLocal {
         return resultado;
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public List<Materia> getAllMaterias() {
+        return this.materiaDAO.findAll();
+    }
 }

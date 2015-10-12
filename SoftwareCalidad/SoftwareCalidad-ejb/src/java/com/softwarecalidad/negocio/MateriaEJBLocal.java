@@ -6,6 +6,7 @@
 package com.softwarecalidad.negocio;
 
 import com.softwarecalidad.entidades.Materia;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,5 +15,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface MateriaEJBLocal {
+
     public boolean adicionarMateria(Materia nuevaMateria);
+
+    public List<Materia> getAllMaterias();
 }
