@@ -33,8 +33,15 @@ public class MateriaDAO extends AbstractFacade<Materia> {
     protected EntityManager getEntityManager() {
         return this.em;
     }
-
-    public List<Materia> findPoridInnerjoinProfesor() {
-        return this.em.createNamedQuery("").setParameter("", "").getResultList();
+    
+    public Materia buscarMateriaByIdMateria(String codMateria){
+        Materia resultado = null;
+        try{
+            resultado = (Materia) this.em.createNamedQuery("Materia.findByCodigo").setParameter("codigo", codMateria).getSingleResult();
+        } catch(Exception e){
+            System.out.println("Error DAO al buscar profesor by codMateria");
+        }
+        return resultado;
     }
+    
 }

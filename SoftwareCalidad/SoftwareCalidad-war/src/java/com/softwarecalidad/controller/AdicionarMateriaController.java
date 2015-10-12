@@ -7,7 +7,8 @@ package com.softwarecalidad.controller;
 
 import com.softwarecalidad.entidades.Materia;
 import com.softwarecalidad.negocio.MateriaEJBLocal;
-import com.softwarecalidad.singleton.SingletonController;
+import com.softwarecalidad.utilidades.ResultadoOperation;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -19,24 +20,37 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class AdicionarMateriaController {
-
-    private SingletonController instacionControler = SingletonController.getInstance();
+    @EJB
+    private MateriaEJBLocal materiaEJB;
 
     private Materia nuevaMateria = new Materia();
+    
+    @PostConstruct
+    public void init(){
+        this.nuevaMateria = new Materia();
+    }
 
+    public Materia getNuevaMateria() {
+        return nuevaMateria;
+    }
+
+    public void setNuevaMateria(Materia nuevaMateria) {
+        this.nuevaMateria = nuevaMateria;
+    }
+    
+    
     /**
      * Creates a new instance of AdicionarMateriaController
      */
     public AdicionarMateriaController() {
     }
 
-    public void adicionarMateria() {
-        this.nuevaMateria.setCodigo("123");
-        this.nuevaMateria.setCreditos("1");
-        this.nuevaMateria.setIh("1");
-        this.nuevaMateria.setNombre("MAteri");
-        this.nuevaMateria.setTipo("1");
-        instacionControler.adicionarMateria(nuevaMateria);
+    public void crearMateria(){
+        ResultadoOperation resultado = this.materiaEJB.adicionarMateria(nuevaMateria);
+        if(resultado.isOk()){
+            System.out.println("La creo correctamente");
+        } else {
+            System.out.println(resultado.getMensaje());
+        }
     }
-
 }
