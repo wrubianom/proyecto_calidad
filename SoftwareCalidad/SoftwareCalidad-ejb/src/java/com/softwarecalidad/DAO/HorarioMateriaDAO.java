@@ -35,14 +35,14 @@ public class HorarioMateriaDAO extends AbstractFacade<HorarioMateria> {
         return this.em;
     }
 
-    public HorarioMateria crearNuevoGrupo(HorarioMateria nuevoGrupo) {
+    public HorarioMateria crearNuevoGrupo(HorarioMateria nuevoGrupo) throws Exception {
 
         try {
             this.em.persist(nuevoGrupo);
             this.em.flush();
 
         } catch (Exception e) {
-            System.out.println("error persistencia Horario materia " + e.toString());
+            throw new Exception(e.getMessage());
         }
 
         return nuevoGrupo;

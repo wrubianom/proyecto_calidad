@@ -9,70 +9,102 @@
     <ui:define name="content">
 
         <h:form>
-            <h:panelGrid columns="3">
-                <h:outputLabel for="idMateria" value="Materia" ></h:outputLabel>
-                <h:selectOneMenu id="idMateria" value="#{adicionarGrupoController.idMateria}" required="true" requiredMessage="Debe seleccionar una materia"> 
-                    <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
-                    <f:selectItems value="#{adicionarGrupoController.listaMaterias}" var="items" itemLabel="#{items.nombre}" itemValue="#{items.idMateria}"></f:selectItems>
-                </h:selectOneMenu>
-                <h:message for="idMateria"></h:message>
 
-                <h:outputLabel for="idGrupo" value="Grupo"></h:outputLabel>
-                <h:inputText id="idGrupo" value="#{adicionarGrupoController.nuevoGrupo.grupo}" required="true" requiredMessage="Debe ingresar el grupo "></h:inputText>
-                <h:message for="idGrupo"></h:message>
+            <div class="form-horizontal" >
+                <div class="form-group">
+                    <h:outputLabel for="idMateria" value="Materia" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:selectOneMenu id="idMateria" value="#{adicionarGrupoController.idMateria}" required="true" requiredMessage="Debe seleccionar una materia"> 
+                            <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+                            <f:selectItems value="#{adicionarGrupoController.listaMaterias}" var="items" itemLabel="#{items.nombre}" itemValue="#{items.idMateria}"></f:selectItems>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="col-lg-4">
+                        <h:message for="idMateria" styleClass="alert alert-danger"></h:message>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="idGrupo" value="Grupo" styleClass="col-lg-2 control-label"></h:outputLabel>
 
-                <h:outputLabel for="jornada" value="Jornada"></h:outputLabel>
-                <h:selectOneMenu id="jornada" required="true" requiredMessage="Debe ingresar la jornada" value="#{adicionarGrupoController.nuevoGrupo.jornada}">
-                    <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
-                    <f:selectItem itemLabel="Diurna" itemValue="D"></f:selectItem>
-                    <f:selectItem itemLabel="Nocturna" itemValue="N"></f:selectItem>
-                </h:selectOneMenu>
-                <h:message for="jornada"></h:message>
+                    <div class="col-lg-1">
+                        <h:inputText styleClass="form-control" id="idGrupo" value="#{adicionarGrupoController.nuevoGrupo.grupo}" required="true" requiredMessage="Debe ingresar el grupo "></h:inputText>
+                    </div>
+                    <div class="col-lg-4">
+                        <h:message for="idGrupo" styleClass="alert alert-danger"></h:message>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="jornada" value="Jornada" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
 
-                <h:outputLabel for="bloque" value="Numero de bloques"></h:outputLabel>
-                <h:selectOneMenu id="bloque" required="true" requiredMessage="Debe ingresar el numero de bloques" value="#{adicionarGrupoController.nuevoGrupo.jornada}">
-                    <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
-                    <f:selectItem itemLabel="1" itemValue="1"></f:selectItem>
-                </h:selectOneMenu>
-                <h:message for="bloque"></h:message>
-                <h:outputLabel for="panelHorario" value="Bloque 1"></h:outputLabel>
-                <h:panelGrid columns="3" id="panelHorario">
-                    <h:selectOneMenu id="dia" required="true" requiredMessage="Debe ingresar el dia" value="#{adicionarGrupoController.nuevoGrupo.dia}">
-                        <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
-                        <f:selectItem itemLabel="Lunes" itemValue="1"></f:selectItem>
-                        <f:selectItem itemLabel="Martes" itemValue="2"></f:selectItem>
-                        <f:selectItem itemLabel="Miercoles" itemValue="3"></f:selectItem>
-                        <f:selectItem itemLabel="Jueves" itemValue="4"></f:selectItem>
-                        <f:selectItem itemLabel="Viernes" itemValue="5"></f:selectItem>
-                        <f:selectItem itemLabel="Sabado" itemValue="6"></f:selectItem>
-                    </h:selectOneMenu>
-                    <h:selectOneMenu id="hora" required="true" requiredMessage="Debe ingresar la hora" value="#{adicionarGrupoController.nuevoGrupo.hora}">
-                        <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
-                        <f:selectItem itemLabel="Hora 1" itemValue="1"></f:selectItem>
-                        <f:selectItem itemLabel="Hora 2" itemValue="2"></f:selectItem>
-                        <f:selectItem itemLabel="Hora 3" itemValue="3"></f:selectItem>
-                    </h:selectOneMenu>
-                    <h:selectOneMenu id="dura" required="true" requiredMessage="Debe ingresar el numero horas de duracion" value="#{adicionarGrupoController.nuevoGrupo.duracion}">
-                        <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
-                        <f:selectItem itemLabel="1 hora" itemValue="1"></f:selectItem>
-                        <f:selectItem itemLabel="2 horas" itemValue="2"></f:selectItem>
-                        <f:selectItem itemLabel="3 horas" itemValue="3"></f:selectItem>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:messages for="panelHorario" ></h:messages>
-            </h:panelGrid>
+                        <h:selectOneMenu id="jornada" required="true" requiredMessage="Debe ingresar la jornada" value="#{adicionarGrupoController.nuevoGrupo.jornada}">
+                            <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+                            <f:selectItem itemLabel="Diurna" itemValue="D"></f:selectItem>
+                            <f:selectItem itemLabel="Nocturna" itemValue="N"></f:selectItem>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="col-lg-4">
+                        <h:message for="jornada" styleClass="alert alert-danger"></h:message>
+                    </div>
+                </div>
 
-            <h:panelGroup rendered="#{adicionarGrupoController.renderizarPanel(adicionarGrupoController.renderError)}">
-                <h:messages id="mensajeError" styleClass="alert alert-danger"></h:messages>    
+                <div class="form-group">
+                    <h:outputLabel for="bloque" value="Numero de bloques" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:selectOneMenu id="bloque" required="true" requiredMessage="Debe ingresar el numero de bloques" value="#{adicionarGrupoController.nuevoGrupo.jornada}">
+                            <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+                            <f:selectItem itemLabel="1" itemValue="1"></f:selectItem>
+                        </h:selectOneMenu>
+                    </div>  
+                    <div class="col-lg-4">
+                        <h:message for="bloque" styleClass="alert alert-danger"></h:message>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="bloque" value="Numero de bloques" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:panelGrid columns="3" id="panelHorario">
+                            <h:selectOneMenu id="dia" required="true" requiredMessage="Debe ingresar el dia" value="#{adicionarGrupoController.nuevoGrupo.dia}">
+                                <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+                                <f:selectItem itemLabel="Lunes" itemValue="1"></f:selectItem>
+                                <f:selectItem itemLabel="Martes" itemValue="2"></f:selectItem>
+                                <f:selectItem itemLabel="Miercoles" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Jueves" itemValue="4"></f:selectItem>
+                                <f:selectItem itemLabel="Viernes" itemValue="5"></f:selectItem>
+                                <f:selectItem itemLabel="Sabado" itemValue="6"></f:selectItem>
+                            </h:selectOneMenu>
+                            <h:selectOneMenu id="hora" required="true" requiredMessage="Debe ingresar la hora" value="#{adicionarGrupoController.nuevoGrupo.hora}">
+                                <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+                                <f:selectItem itemLabel="Hora 1" itemValue="1"></f:selectItem>
+                                <f:selectItem itemLabel="Hora 2" itemValue="2"></f:selectItem>
+                                <f:selectItem itemLabel="Hora 3" itemValue="3"></f:selectItem>
+                            </h:selectOneMenu>
+                            <h:selectOneMenu id="dura" required="true" requiredMessage="Debe ingresar el numero horas de duracion" value="#{adicionarGrupoController.nuevoGrupo.duracion}">
+                                <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+                                <f:selectItem itemLabel="1 hora" itemValue="1"></f:selectItem>
+                                <f:selectItem itemLabel="2 horas" itemValue="2"></f:selectItem>
+                                <f:selectItem itemLabel="3 horas" itemValue="3"></f:selectItem>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                    </div>
+                    <div class="col-lg-4">
+                        <h:messages for="panelHorario" styleClass="alert alert-danger"></h:messages>
+                    </div>
+                </div>
+            </div>
+
+
+            <h:commandButton value="Adicionar" styleClass="btn btn-info" action="#{adicionarGrupoController.guardarGrupo()}" ></h:commandButton>
+
+            <h:panelGroup id="panelMensajes">
+                <h:panelGroup rendered="#{adicionarGrupoController.renderizarPanel(adicionarGrupoController.renderError)}">
+                    <h:messages id="mensajeError" styleClass="alert alert-danger"></h:messages>    
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adicionarGrupoController.renderizarPanel(adicionarGrupoController.renderOperacionOk)}">
+                    <h:messages  id="mensajeSuccess" styleClass="alert alert-success"></h:messages>    
+                </h:panelGroup>
             </h:panelGroup>
-
-            <h:panelGroup rendered="#{adicionarGrupoController.renderizarPanel(adicionarGrupoController.renderOperacionOk)}">
-                <h:messages  id="mensajeSuccess" styleClass="alert alert-success"></h:messages>    
-            </h:panelGroup>
-
-
-            <h:commandButton value="Adicionar" action="#{adicionarGrupoController.guardarGrupo()}"></h:commandButton>
-
         </h:form>
     </ui:define>
 </ui:composition>
