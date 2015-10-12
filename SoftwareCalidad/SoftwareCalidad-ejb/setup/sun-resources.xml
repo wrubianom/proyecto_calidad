@@ -9,7 +9,7 @@
     <property name="User" value="postgres"/>
     <property name="Password" value="ADMIN"/>
     <property name="databaseName" value="Sistema_Notas"/>
-    <property name="portNumber" value="3254"/>
+    <property name="portNumber" value="5432"/>
     <property name="serverName" value="localhost"/>
   </jdbc-connection-pool>
 </resources>
