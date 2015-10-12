@@ -6,6 +6,8 @@
 package com.softwarecalidad.negocio;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -14,9 +16,15 @@ import javax.ejb.Stateless;
 @Stateless
 public class UsuarioEJB implements UsuarioEJBLocal {
 
+    @PersistenceContext
+    EntityManager dataAcces;
+
     @Override
     public boolean login(String user, String pass) {
         return true;
     }
 
+    
+    
+    
 }
