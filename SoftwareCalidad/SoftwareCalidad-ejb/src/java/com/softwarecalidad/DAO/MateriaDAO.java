@@ -37,4 +37,8 @@ public class MateriaDAO extends AbstractFacade<Materia> {
     public List<Materia> findPoridInnerjoinProfesor() {
         return this.em.createNamedQuery("").setParameter("", "").getResultList();
     }
+
+    public Materia finByIdMateria(Integer idmateria) {
+        return (Materia) this.em.createNamedQuery("Materia.findByIdMateria").setParameter("idMateria", idmateria).getSingleResult();
+    }
 }
