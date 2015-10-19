@@ -21,4 +21,10 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
+    <ejb-local-ref>
+        <ejb-ref-name>MateriaEJB</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>com.softwarecalidad.negocio.MateriaEJBLocal</local>
+        <ejb-link>SoftwareCalidad-ejb.jar#MateriaEJB</ejb-link>
+    </ejb-local-ref>
 </web-app>

@@ -46,4 +46,24 @@ public class MateriaEJB implements MateriaEJBLocal {
     public List<Materia> getAllMaterias() {
         return this.materiaDAO.findAll();
     }
+
+    @Override
+    public ResultadoOperation eliminarMateria(int idMateria) {
+        ResultadoOperation resultado = new ResultadoOperation();
+        resultado.setResultado(true);
+        try{
+            Materia result = this.materiaDAO.finByIdMateria(idMateria);
+            if(result != null){
+                this.materiaDAO.remove(result);
+            } else {
+                resultado.setResultado(false);
+                resultado.setMensaje("La materia con el id " + result.getCodigo() + " no existe");
+            }
+        } catch(Exception e){
+            resultado.setResultado(false);
+            resultado.setMensaje("error al eliminar materia en capa de negocio ResultadoOperation");
+            System.out.println("Error al eliminar materia ");
+        }
+        return resultado;
+    }
 }

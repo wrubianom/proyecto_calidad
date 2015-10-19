@@ -7,20 +7,18 @@
                 template="./../template/templateGeneral.xhtml">
 
     <ui:define name="content">
-        Eliminar Marteria
+        Modificar Materia 1
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputLabel for="idMateria" value="Materia" ></h:outputLabel>
-                <h:selectOneMenu id="idMateria" value="#{eliminarMateriaController.idMateria}" required="true" requiredMessage="Debe seleccionar una materia"> 
+                <h:selectOneMenu id="idMateria" value="#{modificarMateriaController.idMateria}" required="true" requiredMessage="Debe seleccionar una materia"> 
                     <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
-                    <f:selectItems value="#{eliminarMateriaController.listaMaterias}" var="items" itemLabel="#{items.nombre}" itemValue="#{items.idMateria}"></f:selectItems>
+                    <f:selectItems value="#{modificarMateriaController.listaMaterias}" var="items" itemLabel="#{items.nombre}" itemValue="#{items.idMateria}"></f:selectItems>
                 </h:selectOneMenu>
             </h:panelGrid>
             
-            <h:commandButton value="Eliminar" action="#{eliminarMateriaController.eliminarMateria()}"></h:commandButton>
-            
+            <h:commandButton value="Enviar" action="#{modificarMateriaController.modificarMateria()}"></h:commandButton>
         </h:form>
-        
     </ui:define>
 
 </ui:composition>
