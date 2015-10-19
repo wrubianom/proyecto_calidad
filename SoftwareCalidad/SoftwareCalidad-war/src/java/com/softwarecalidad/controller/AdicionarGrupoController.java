@@ -112,6 +112,7 @@ public class AdicionarGrupoController {
 
         if (res.isOk()) {
             this.panelRenderizado = this.renderOperacionOk;
+
             System.out.println("Lo agrero correctamente");
             System.out.println("Error : " + res.getMensaje());
             FacesContext fc = FacesContext.getCurrentInstance();
@@ -120,6 +121,7 @@ public class AdicionarGrupoController {
             mensaje.setSummary("Lo agrero correctamente");
             mensaje.setDetail("Lo agrero correctamente");
             fc.addMessage("mensajeError", mensaje);
+            this.iniciarAdicionarGrupo();
         } else {
             this.panelRenderizado = this.renderError;
             System.out.println("Error : " + res.getMensaje());
@@ -130,6 +132,12 @@ public class AdicionarGrupoController {
             mensaje.setDetail(res.getMensaje());
             fc.addMessage("mensajeError", mensaje);
         }
+    }
+
+    private void iniciarAdicionarGrupo() {
+        this.nuevoGrupo = new HorarioMateria();
+        this.panelRenderizado = 0;
+        this.idMateria = null;
     }
 
     public boolean renderizarPanel(Integer idPanelrender) {

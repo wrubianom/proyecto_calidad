@@ -10,6 +10,13 @@
 
         <h:form>
 
+            <div class="text-center">
+                <div class="jumbotron">
+                    <h1>Adicionar grupo de materias</h1>
+                    <p>Se realizara el cargue de grupos para las materias registradas</p>
+
+                </div>
+            </div>
             <div class="form-horizontal" >
                 <div class="form-group">
                     <h:outputLabel for="idMateria" value="Materia" styleClass="col-lg-2 control-label"></h:outputLabel>
@@ -94,9 +101,9 @@
                 </div>
             </div>
 
-
-            <h:commandButton value="Adicionar" styleClass="btn btn-info" action="#{adicionarGrupoController.guardarGrupo()}" ></h:commandButton>
-
+            <div class="text-center">
+                <h:commandButton value="Adicionar" styleClass="btn btn-info" action="#{adicionarGrupoController.guardarGrupo()}" ></h:commandButton>
+            </div>
             <h:panelGroup id="panelMensajes">
                 <h:panelGroup rendered="#{adicionarGrupoController.renderizarPanel(adicionarGrupoController.renderError)}">
                     <h:messages id="mensajeError" styleClass="alert alert-danger"></h:messages>    
@@ -105,6 +112,7 @@
                     <h:messages  id="mensajeSuccess" styleClass="alert alert-success"></h:messages>    
                 </h:panelGroup>
             </h:panelGroup>
+            <br/>
         </h:form>
     </ui:define>
 </ui:composition>
