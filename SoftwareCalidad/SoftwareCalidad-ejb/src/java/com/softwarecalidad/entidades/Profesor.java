@@ -8,6 +8,7 @@ package com.softwarecalidad.entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,9 +25,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author WRubianoM
+ * @author Sebastian Vega
  */
 @Entity
+@Cacheable
 @Table(name = "profesor")
 @XmlRootElement
 @NamedQueries({
@@ -37,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Profesor.findByTipoContrato", query = "SELECT p FROM Profesor p WHERE p.tipoContrato = :tipoContrato"),
     @NamedQuery(name = "Profesor.findByDisponibilidad", query = "SELECT p FROM Profesor p WHERE p.disponibilidad = :disponibilidad")})
 public class Profesor implements Serializable {
-    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -165,5 +167,5 @@ public class Profesor implements Serializable {
     public String toString() {
         return "com.softwarecalidad.entidades.Profesor[ idProfesor=" + idProfesor + " ]";
     }
-    
+
 }

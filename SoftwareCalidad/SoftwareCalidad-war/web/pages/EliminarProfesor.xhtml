@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./../template/templateGeneral.xhtml">
+    <ui:define name="content">
+        <h:form id="col-md-offset-2">               
+            <div class="col-md-offset-2 form-horizontal" >   
+                <h2><font color="blue" face="Times New Roman"><i>Eliminar Profesor</i></font></h2><br/>
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/>
+
+                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="10" paginatorPosition="bottom" editable="true">
+
+                    <p:column headerText="Codigo">
+                        <h:outputLabel value="#{varProfesor.codigo}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputLabel  value="#{varProfesor.nombre}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Tipo de Contrato">
+                        <h:outputLabel value="#{varProfesor.tipoContrato}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Disponibilidad">
+                        <h:outputLabel value="#{varProfesor.disponibilidad}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":col-md-offset-2:msgs01" icon="ui-icon-erased" title="Eliminar">
+                            <!--<f:setPropertyActionListener value="#//{varProfesor}" target="#//{ui-icon-delete}" />-->
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                <p:spacer/>
+                <br/>
+                <h:commandButton styleClass="btn btn-info col-md-offset-5"  action="#{modificarProfesor.cargarProfesores()}" value="Consultar" title="Consultar" />
+            </div>
+            <br/>
+        </h:form>
+    </ui:define>
+</ui:composition>

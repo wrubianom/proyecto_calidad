@@ -31,14 +31,17 @@ public class HorarioMateriaEJB implements HorarioMateriaEJBLocal {
     @Override
     public ResultadoOperation crearhorarioMateria(HorarioMateria nuevoGrupo) {
         ResultadoOperation resul = new ResultadoOperation();
-        resul.setResultado(true);
+        resul.setResultado(false);
         try {
 
             Materia res;
             res = this.materiaDAO.finByIdMateria(nuevoGrupo.getIdMateria().getIdMateria());
             nuevoGrupo.setIdMateria(res);
             nuevoGrupo.setSemestre(res.getSemestre());
-            horarioMateriaDAO.crearNuevoGrupo(nuevoGrupo);
+            HorarioMateria ress = horarioMateriaDAO.crearNuevoGrupo(nuevoGrupo);
+            if (ress != null && ress.getIdHorarioMateria() != null) {
+                resul.setResultado(true);
+            }
         } catch (Exception e) {
             resul.setResultado(false);
             resul.setMensaje("Error al crearHroario materia capa Negocio " + e.toString());

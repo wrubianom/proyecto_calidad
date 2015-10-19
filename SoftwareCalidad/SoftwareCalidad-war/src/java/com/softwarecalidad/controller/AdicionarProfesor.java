@@ -7,28 +7,54 @@ package com.softwarecalidad.controller;
 
 import com.softwarecalidad.entidades.Profesor;
 import com.softwarecalidad.negocio.ProfesorEJBLocal;
-import com.softwarecalidad.utilidades.ResultadoOperation;
+import com.softwarecalidad.utilidades.UtilFaces;
+import com.softwarecalidad.utilidades.Utilidades;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 /**
  *
- * @author Brian
+ * @author Sebastian Vega
  */
 @ManagedBean
 @RequestScoped
-public class AdicionarProfesor {
+public class AdicionarProfesor implements Serializable {
 
     @EJB
     private ProfesorEJBLocal profesorEJB;
 
-    private Profesor nuevoProfesor;
+    private Profesor nuevoProfesor = new Profesor();
+    private Utilidades util = new Utilidades();
 
     @PostConstruct
     public void init() {
-        this.nuevoProfesor = new Profesor();
+    }
+
+    public AdicionarProfesor() {
+    }
+
+    public void crearProfesor() {
+        try {
+            if (util.validateText(nuevoProfesor.getCodigo())) {
+                UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_FATAL, "Error en el Codigo");
+            } else if (util.validateText(nuevoProfesor.getNombre())) {
+                UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_FATAL, "Error en el Nombre");
+            } else if (util.validateText(nuevoProfesor.getTipoContrato())) {
+                UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_FATAL, "Error en el Tipo de Contrato");
+            } else {
+                boolean ban = profesorEJB.crearProfesor(nuevoProfesor);
+                if (ban)
+                    UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Profesor a sido Agregado");
+                else 
+                    UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error verifique los datos del profesor");
+            }
+        } catch (Exception ex) {
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage());
+        }
     }
 
     public Profesor getNuevoProfesor() {
@@ -37,20 +63,6 @@ public class AdicionarProfesor {
 
     public void setNuevoProfesor(Profesor nuevoProfesor) {
         this.nuevoProfesor = nuevoProfesor;
-    }
-
-    public AdicionarProfesor() {
-    }
-
-    public void crearProfesor() {
-        this.nuevoProfesor.setDisponibilidad("1");
-        this.nuevoProfesor.setTipoContrato("1");
-        ResultadoOperation resultado = this.profesorEJB.crearProfesor(nuevoProfesor);
-        if (resultado.isOk()) {
-            System.out.println("Lo creo correcto");
-        } else {
-            System.out.println(resultado.getMensaje());
-        }
     }
 
 }

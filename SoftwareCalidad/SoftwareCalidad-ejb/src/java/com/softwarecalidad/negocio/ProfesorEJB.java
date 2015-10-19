@@ -7,39 +7,38 @@ package com.softwarecalidad.negocio;
 
 import com.softwarecalidad.DAO.ProfesorDAO;
 import com.softwarecalidad.entidades.Profesor;
-import com.softwarecalidad.utilidades.ResultadoOperation;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
  *
- * @author Brian
+ * @author Sebastian Vega
  */
 @Stateless
 public class ProfesorEJB implements ProfesorEJBLocal {
 
     @EJB
     private ProfesorDAO profesorDAO;
-    
-    
 
     @Override
-    public ResultadoOperation crearProfesor(Profesor nuevoProfesor) {
-        ResultadoOperation resultado = new ResultadoOperation();
-        resultado.setResultado(true);
-        try {
-            Profesor result = this.profesorDAO.buscarProfesorByNumDoc(nuevoProfesor.getCodigo());
-            if (result != null) {
-                resultado.setResultado(false);
-                resultado.setMensaje("El profesor con la identificacion " + nuevoProfesor.getCodigo() + " ya se encuentra registrado");
-            } else {
-                this.profesorDAO.create(nuevoProfesor);
-            }
-        } catch (Exception e) {
-            resultado.setResultado(false);
-            resultado.setMensaje("error al crear profesor en capa de negocio ResultadoOperation");
-            System.out.println(" Error al crear profesor ");
+    public boolean crearProfesor(Profesor nuevoProfesor) {
+        Profesor result = this.profesorDAO.buscarProfesorByNumDoc(nuevoProfesor.getCodigo());
+        if (result == null) {
+            profesorDAO.create(nuevoProfesor);
+            return true;
+        } else {
+            return false;
         }
-        return resultado;
+    }
+
+    @Override
+    public List<Profesor> findAllProfesor() {
+        return profesorDAO.findAll();
+    }
+
+    @Override
+    public void modificarProfesor(Profesor profesor) {
+        profesorDAO.edit(profesor);
     }
 }
