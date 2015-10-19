@@ -7,6 +7,7 @@ package com.softwarecalidad.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author WRubianoM
  */
 @Entity
+@Cacheable(false)
 @Table(name = "horario_materia")
 @XmlRootElement
 @NamedQueries({
@@ -38,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "HorarioMateria.findBySemestre", query = "SELECT h FROM HorarioMateria h WHERE h.semestre = :semestre"),
     @NamedQuery(name = "HorarioMateria.findByJornada", query = "SELECT h FROM HorarioMateria h WHERE h.jornada = :jornada")})
 public class HorarioMateria implements Serializable {
-    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

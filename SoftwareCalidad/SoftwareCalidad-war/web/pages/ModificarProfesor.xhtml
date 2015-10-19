@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./../template/templateGeneral.xhtml">
+    <ui:define name="content">
+        <h:form id="form-tab-cours-02">               
+            <div class="col-md-offset-2 form-horizontal" >   
+                <h2><font color="blue" face="Times New Roman"><i>Modificar Profesor</i></font></h2><br/>
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/>
+
+                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="5" paginatorPosition="bottom" editable="true">
+
+                    <p:ajax event="rowEdit" listener="#{modificarProfesor.onRowEdit}" update=":form-tab-cours-02:msgs01" />
+                    <p:ajax event="rowEditCancel" listener="#{modificarProfesor.onRowCancel}" update=":form-tab-cours-02:msgs01" />
+
+                    <p:column headerText="Codigo">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varProfesor.codigo}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varProfesor.codigo}" style="width:100%"/></f:facet>
+                        </p:cellEditor> 
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varProfesor.nombre}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varProfesor.nombre}" style="width:100%"/></f:facet>
+                        </p:cellEditor> 
+                    </p:column>
+                    <p:column headerText="Tipo de Contrato">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varProfesor.tipoContrato}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varProfesor.tipoContrato}" style="width:100%"/></f:facet>
+                        </p:cellEditor> 
+                    </p:column>
+                    <p:column headerText="Disponibilidad">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varProfesor.disponibilidad}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varProfesor.disponibilidad}" style="width:100%"/></f:facet>
+                        </p:cellEditor> 
+                    </p:column>
+                    <p:column style="width:32px">
+                        <p:rowEditor />
+                    </p:column>
+                </p:dataTable>
+                <p:spacer/>   
+                <br/>
+                <!--<h:commandButton styleClass="btn btn-info col-md-offset-5"  action="#//{modificarProfesor.cargarProfesores()}" value="Consultar" title="Consultar" />-->
+            </div>
+            <br/>
+        </h:form>
+    </ui:define>
+</ui:composition>

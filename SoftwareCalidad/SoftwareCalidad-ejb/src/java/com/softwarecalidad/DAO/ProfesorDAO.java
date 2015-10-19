@@ -9,6 +9,7 @@ import com.softwarecalidad.entidades.Profesor;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -36,13 +37,12 @@ public class ProfesorDAO extends AbstractFacade<Profesor> {
     }
 
     public Profesor buscarProfesorByNumDoc(String numDocumento) {
-        Profesor resultado = null;
         try {
-            resultado = (Profesor) this.em.createNamedQuery("Profesor.findByCodigo").setParameter("codigo", numDocumento).getSingleResult();
-        } catch (Exception e) {
+            return (Profesor) this.em.createNamedQuery("Profesor.findByCodigo").setParameter("codigo", numDocumento).getSingleResult();
+        } catch (NoResultException  e) {
             System.out.println("Error DAO al buscar profesor by numodcumento");
+            return null;
         }
-        return resultado;
     }
 
     public List<Profesor> getListaProfesores() {

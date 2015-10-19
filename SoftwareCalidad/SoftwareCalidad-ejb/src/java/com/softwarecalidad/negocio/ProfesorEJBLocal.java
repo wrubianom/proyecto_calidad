@@ -6,15 +6,19 @@
 package com.softwarecalidad.negocio;
 
 import com.softwarecalidad.entidades.Profesor;
-import com.softwarecalidad.utilidades.ResultadoOperation;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Brian
+ * @author Sebastian Vega
  */
 @Local
 public interface ProfesorEJBLocal {
 
-    public ResultadoOperation crearProfesor(Profesor nuevoProfesor);
+    public boolean crearProfesor(Profesor nuevoProfesor);
+
+    public void modificarProfesor(Profesor profesor);
+    
+    public List<Profesor> findAllProfesor();
 }
