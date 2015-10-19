@@ -49,6 +49,7 @@ public class MateriaEJB implements MateriaEJBLocal {
 
     @Override
     public ResultadoOperation eliminarMateria(int idMateria) {
+        
         ResultadoOperation resultado = new ResultadoOperation();
         resultado.setResultado(true);
         try{
