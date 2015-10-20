@@ -41,4 +41,9 @@ public class ProfesorEJB implements ProfesorEJBLocal {
     public void modificarProfesor(Profesor profesor) {
         profesorDAO.edit(profesor);
     }
+
+    @Override
+    public void eliminarProfesor(Profesor profesor) {
+        profesorDAO.remove(profesor);
+    }
 }

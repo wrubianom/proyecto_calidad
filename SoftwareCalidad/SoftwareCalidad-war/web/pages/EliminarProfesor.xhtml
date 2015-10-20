@@ -6,34 +6,43 @@
                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 template="./../template/templateGeneral.xhtml">
     <ui:define name="content">
-        <h:form id="col-md-offset-2">               
-            <div class="col-md-offset-2 form-horizontal" >   
-                <h2><font color="blue" face="Times New Roman"><i>Eliminar Profesor</i></font></h2><br/>
+        <h:form id="form-tab-cours-02">               
+            <div class="col-md-offset-0 form-horizontal" >   
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Eliminar Profesor</i></font></h1>
+                        <p>Se realiza la eliminación de un profesor determinado</p>
+                    </div>
+                </div>
                 <p:messages id="msgs01" autoUpdate="true" closable="true"/>
 
-                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="10" paginatorPosition="bottom" editable="true">
+                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="5" paginatorPosition="bottom" editable="true" draggableColumns="true">
 
-                    <p:column headerText="Codigo">
+                    <f:facet name="header">
+                        Profesores
+                    </f:facet>
+
+                    <p:column headerText="Codigo" sortBy="#{varProfesor.codigo}">
                         <h:outputLabel value="#{varProfesor.codigo}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Nombre">
+                    <p:column headerText="Nombre" sortBy="#{varProfesor.nombre}">
                         <h:outputLabel  value="#{varProfesor.nombre}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Tipo de Contrato">
+                    <p:column headerText="Tipo de Contrato" sortBy="#{varProfesor.tipoContrato}">
                         <h:outputLabel value="#{varProfesor.tipoContrato}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Disponibilidad">
+                    <p:column headerText="Disponibilidad" sortBy="#{varProfesor.disponibilidad}">
                         <h:outputLabel value="#{varProfesor.disponibilidad}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
                     <p:column>
-                        <p:commandButton update=":col-md-offset-2:msgs01" icon="ui-icon-erased" title="Eliminar">
-                            <!--<f:setPropertyActionListener value="#//{varProfesor}" target="#//{ui-icon-delete}" />-->
+                        <p:commandButton update=":form-tab-cours-02:msgs01" icon="ui-icon-trash" title="Eliminar">
+                            <f:setPropertyActionListener value="#{varProfesor}" target="#{modificarProfesor.eliminarProfesor(varProfesor)}" />
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
                 <p:spacer/>
                 <br/>
-                <h:commandButton styleClass="btn btn-info col-md-offset-5"  action="#{modificarProfesor.cargarProfesores()}" value="Consultar" title="Consultar" />
+             <!--   <h:commandButton styleClass="btn btn-info col-md-offset-5"  action="#//{modificarProfesor.cargarProfesores()}" value="Consultar" title="Consultar" /> -->
             </div>
             <br/>
         </h:form>
