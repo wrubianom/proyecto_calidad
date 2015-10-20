@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./../template/templateGeneral.xhtml">
+    <ui:define name="content">
+        <h:form id="form-tab-cours-02">               
+            <div class="col-md-offset-0 form-horizontal" >   
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Eliminar Administrador</i></font></h1>
+                        <p>Se realiza la eliminación de un administrador determinado</p>
+                    </div>
+                </div>
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/>
+
+                <p:dataTable id="tab-cours" var="varAdmin" value="" paginator="true" rows="5" paginatorPosition="bottom" editable="true" draggableColumns="true">
+
+                    <f:facet name="header">
+                        Administradores
+                    </f:facet>
+
+                    <p:column headerText="UserName" sortBy="">
+                        <h:outputLabel value="" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Nombre" sortBy="">
+                        <h:outputLabel  value="" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form-tab-cours-02:msgs01" icon="ui-icon-trash" title="Eliminar">
+                            <f:setPropertyActionListener value="" target="" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                <p:spacer/>
+                <br/>
+                <!--   <h:commandButton styleClass="btn btn-info col-md-offset-5"  action="#//{modificarProfesor.cargarProfesores()}" value="Consultar" title="Consultar" /> -->
+            </div>
+            <br/>
+        </h:form>
+    </ui:define>
+</ui:composition>
