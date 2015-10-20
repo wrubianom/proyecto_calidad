@@ -19,6 +19,8 @@ public interface ProfesorEJBLocal {
     public boolean crearProfesor(Profesor nuevoProfesor);
 
     public void modificarProfesor(Profesor profesor);
+
+    public void eliminarProfesor(Profesor profesor);
     
     public List<Profesor> findAllProfesor();
 }

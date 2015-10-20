@@ -7,22 +7,33 @@
                 template="./../template/templateGeneral.xhtml">
     <ui:define name="content">
         <h:form>               
-            <div class="col-md-offset-2 form-horizontal" >   
-                <h2><font color="blue" face="Times New Roman"><i>Consultar Profesor</i></font></h2><br/>
+            <div class="col-md-offset-0 form-horizontal" >   
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Consultar Profesor</i></font></h1>
+                        <p>Se realiza la consulta de los profesores registrados en el sistema</p>
+                    </div>
+                </div>
                 <p:messages id="msgs01" autoUpdate="true" closable="true"/>
 
-                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="10" paginatorPosition="bottom" editable="true">
+                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="5" paginatorPosition="bottom" editable="true" draggableColumns="true">
 
-                    <p:column headerText="Codigo">
+                    <f:facet name="header">
+                        Profesores
+                        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+                        <p:columnToggler datasource="tab-cours" trigger="toggler" /><br/>
+                    </f:facet>
+
+                    <p:column headerText="Codigo" sortBy="#{varProfesor.codigo}">
                         <h:outputLabel value="#{varProfesor.codigo}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Nombre">
+                    <p:column headerText="Nombre" sortBy="#{varProfesor.nombre}">
                         <h:outputLabel  value="#{varProfesor.nombre}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Tipo de Contrato">
+                    <p:column headerText="Tipo de Contrato" sortBy="#{varProfesor.tipoContrato}">
                         <h:outputLabel value="#{varProfesor.tipoContrato}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Disponibilidad">
+                    <p:column headerText="Disponibilidad" sortBy="#{varProfesor.disponibilidad}">
                         <h:outputLabel value="#{varProfesor.disponibilidad}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
                 </p:dataTable>

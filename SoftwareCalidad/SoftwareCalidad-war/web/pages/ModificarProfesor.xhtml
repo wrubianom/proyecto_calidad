@@ -7,37 +7,50 @@
                 template="./../template/templateGeneral.xhtml">
     <ui:define name="content">
         <h:form id="form-tab-cours-02">               
-            <div class="col-md-offset-2 form-horizontal" >   
-                <h2><font color="blue" face="Times New Roman"><i>Modificar Profesor</i></font></h2><br/>
+            <div class="col-md-offset-0 form-horizontal" >   
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Modificar Profesor</i></font></h1>
+                        <p>Se realiza la modificación sobre los datos de un profesor determinado</p>
+                    </div>
+                </div>
                 <p:messages id="msgs01" autoUpdate="true" closable="true"/>
 
-                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="5" paginatorPosition="bottom" editable="true">
+                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="5" paginatorPosition="bottom" editable="true" draggableColumns="true">
 
                     <p:ajax event="rowEdit" listener="#{modificarProfesor.onRowEdit}" update=":form-tab-cours-02:msgs01" />
                     <p:ajax event="rowEditCancel" listener="#{modificarProfesor.onRowCancel}" update=":form-tab-cours-02:msgs01" />
 
-                    <p:column headerText="Codigo">
+                    <f:facet name="header">
+                        Profesores
+                    </f:facet>
+
+                    <p:column headerText="Codigo" sortBy="#{varProfesor.codigo}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varProfesor.codigo}" /></f:facet>
                             <f:facet name="input"><p:inputText value="#{varProfesor.codigo}" style="width:100%"/></f:facet>
                         </p:cellEditor> 
                     </p:column>
-                    <p:column headerText="Nombre">
+                    <p:column headerText="Nombre" sortBy="#{varProfesor.nombre}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varProfesor.nombre}" /></f:facet>
                             <f:facet name="input"><p:inputText value="#{varProfesor.nombre}" style="width:100%"/></f:facet>
                         </p:cellEditor> 
                     </p:column>
-                    <p:column headerText="Tipo de Contrato">
+                    <p:column headerText="Tipo de Contrato" sortBy="#{varProfesor.tipoContrato}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varProfesor.tipoContrato}" /></f:facet>
                             <f:facet name="input"><p:inputText value="#{varProfesor.tipoContrato}" style="width:100%"/></f:facet>
                         </p:cellEditor> 
                     </p:column>
-                    <p:column headerText="Disponibilidad">
+                    <p:column headerText="Disponibilidad" sortBy="#{varProfesor.disponibilidad}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varProfesor.disponibilidad}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varProfesor.disponibilidad}" style="width:100%"/></f:facet>
+                            <f:facet name="input"><h:selectOneMenu id="idDis" value="#{adicionarProfesor.nuevoProfesor.disponibilidad}" style="width:100%"> 
+                                    <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
+                                    <f:selectItem itemLabel="Jornada Diurna" itemValue="D"></f:selectItem>
+                                    <f:selectItem itemLabel="Jornada Nocturna" itemValue="N"></f:selectItem>
+                                </h:selectOneMenu></f:facet>
                         </p:cellEditor> 
                     </p:column>
                     <p:column style="width:32px">

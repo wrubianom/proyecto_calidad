@@ -53,6 +53,15 @@ public class ModificarProfesor implements Serializable {
         }
     }
 
+    public void eliminarProfesor(Profesor profesor){
+        try{
+            profesores.remove(profesor);
+            
+        }catch(Exception ex){
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage());
+        }
+    }
+    
     public void onRowEdit(RowEditEvent event) {
         profesorEJB.modificarProfesor((Profesor) event.getObject());
         FacesMessage msg = new FacesMessage("Profesor Actualizado", ((Profesor) event.getObject()).toString());
