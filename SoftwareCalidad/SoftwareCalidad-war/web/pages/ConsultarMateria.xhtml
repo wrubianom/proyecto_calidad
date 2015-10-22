@@ -24,22 +24,22 @@
                         <p:columnToggler datasource="tab-cours" trigger="toggler" /><br/>
                     </f:facet>
 
-                    <p:column headerText="Codigo" sortBy="">
+                    <p:column headerText="Codigo" sortBy="#{varMateria.codigo}">
                         <h:outputLabel value="#{varMateria.codigo}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Nombre" sortBy="">
+                    <p:column headerText="Nombre" sortBy="#{varMateria.nombre}">
                         <h:outputLabel value="#{varMateria.nombre}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Tipo" sortBy="">
+                    <p:column headerText="Tipo" sortBy="#{varMateria.tipo}">
                         <h:outputLabel value="#{varMateria.tipo == 'T' ? 'Teórica':'Práctica'}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Créditos" sortBy="">
+                    <p:column headerText="Créditos" sortBy="#{varMateria.creditos}">
                         <h:outputLabel value="#{varMateria.creditos}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Intensidad Horaria" sortBy="">
+                    <p:column headerText="Intensidad Horaria" sortBy="#{varMateria.ih}">
                         <h:outputLabel value="#{varMateria.ih}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Semestre" sortBy="">
+                    <p:column headerText="Semestre" sortBy="#{varMateria.semestre}">
                         <h:outputLabel value="#{varMateria.semestre}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
                 </p:dataTable>
