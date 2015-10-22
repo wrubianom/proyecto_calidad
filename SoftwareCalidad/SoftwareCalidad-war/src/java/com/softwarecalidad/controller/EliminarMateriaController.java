@@ -51,13 +51,14 @@ public class EliminarMateriaController {
     public EliminarMateriaController(){
     }
     
-    public void eliminarMateria(){
-        
-        ResultadoOperation resultado = this.materiaEJB.eliminarMateria(idMateria);
+    public void eliminarMateria(int idMateria){
+        System.out.println(idMateria);
+        /*ResultadoOperation resultado = this.materiaEJB.eliminarMateria(cod);
         if(resultado.isOk()){
+            listaMaterias.remove(materia);
             System.out.println("La eliminó correctamente");
         } else {
             System.out.println(resultado.getMensaje());
-        }
+        }*/
     }
 }

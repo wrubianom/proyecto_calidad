@@ -1,33 +1,66 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 template="./../template/templateGeneral.xhtml">
-
     <ui:define name="content">
-        Adicionar Materia
         <h:form>
-            <h:panelGrid columns="2">
-                <h:outputLabel value="Código: "></h:outputLabel>
-                <h:inputText value="#{adicionarMateriaController.nuevaMateria.codigo}" maxlength="50"  required="true"></h:inputText>
-                <h:outputLabel value="Nombre: "></h:outputLabel>
-                <h:inputText value="#{adicionarMateriaController.nuevaMateria.nombre}" maxlength="50" required="true"></h:inputText>
-                <h:outputLabel value="Tipo: "></h:outputLabel>
-                <h:selectOneMenu value="#{adicionarMateriaController.nuevaMateria.tipo}" required="true">
-                    <f:selectItem itemValue="T" itemLabel="Teórica" />
-                    <f:selectItem itemValue="P" itemLabel="Práctica" />
-                </h:selectOneMenu>
-                <h:outputLabel value="Créditos: "></h:outputLabel>
-                <h:inputText value="#{adicionarMateriaController.nuevaMateria.creditos}" required="true" maxlength="1"></h:inputText>
-                <h:outputLabel value="Intensidad Horaria"></h:outputLabel>
-                <h:inputText value="#{adicionarMateriaController.nuevaMateria.ih}" required="true" maxlength="1"></h:inputText>
-                <h:outputLabel value="Semestre: "></h:outputLabel>
-                <h:inputText value="#{adicionarMateriaController.nuevaMateria.semestre}" required="true" maxlength="1"></h:inputText>
-            </h:panelGrid>
-
-            <h:commandButton styleClass="btn btn-danger"  action="#{adicionarMateriaController.crearMateria()}" value="Adicionar"></h:commandButton>
+            <div class="col-md-offset-0 form-horizontal" >
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Adicionar Materia</i></font></h1>
+                        <p>Se realiza la creaación de las materias en el sistema</p>
+                    </div>
+                </div>
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/><br/>
+                <div class="form-group">
+                    <h:outputLabel value="Código: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.codigo}" maxlength="50"  required="true" requiredMessage="Error en el Codigo" class="form-control"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h:outputLabel value="Nombre: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.nombre}" maxlength="50" required="true" requiredMessage="Error en el Nombre" class="form-control"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h:outputLabel value="Tipo: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:selectOneMenu value="#{adicionarMateriaController.nuevaMateria.tipo}" class="form-control" required="true" requiredMessage="Debe seleccionar la disponibilidad">
+                            <f:selectItem itemValue="T" itemLabel="Teórica" />
+                            <f:selectItem itemValue="P" itemLabel="Práctica" />
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h:outputLabel value="Créditos: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.creditos}" required="true" maxlength="1" requiredMessage="Error en el Nombre" class="form-control"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h:outputLabel value="Intensidad Horaria: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.ih}" required="true" maxlength="1" requiredMessage="Error en el Nombre" class="form-control"/>
+                    </div>
+                </div>
+                                
+                <div class="form-group">
+                    <h:outputLabel value="Semestre: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.semestre}" required="true" maxlength="1" requiredMessage="Error en el Nombre" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            <h:commandButton styleClass="btn btn-info col-md-offset-2"  action="#{adicionarMateriaController.crearMateria()}" value="Adicionar"></h:commandButton>
         </h:form>
     </ui:define>
 
