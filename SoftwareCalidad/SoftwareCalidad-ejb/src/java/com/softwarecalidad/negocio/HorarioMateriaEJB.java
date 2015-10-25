@@ -11,7 +11,8 @@ import com.softwarecalidad.entidades.HorarioMateria;
 import com.softwarecalidad.entidades.Materia;
 import com.softwarecalidad.utilidades.ResultadoOperation;
 import java.util.List;
-import javax.annotation.PostConstruct;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -48,6 +49,38 @@ public class HorarioMateriaEJB implements HorarioMateriaEJBLocal {
         }
 
         return resul;
+    }
+
+    @Override
+    public List<HorarioMateria> consultarGrupoMateriaByIdMateria(Integer idMateria) {
+        List<HorarioMateria> resultado = null;
+        try {
+            resultado = this.horarioMateriaDAO.consultarHorarioMateriaByIdMateria(idMateria);
+        } catch (Exception ex) {
+            Logger.getLogger(HorarioMateriaEJB.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return resultado;
+    }
+
+    @Override
+    public ResultadoOperation eliminarHorarioGrupoByidHorarioMateria(Integer idHorarioMateria) {
+        ResultadoOperation resul = new ResultadoOperation();
+        resul.setResultado(false);
+        try {
+            HorarioMateria res = this.horarioMateriaDAO.find(idHorarioMateria);
+            this.horarioMateriaDAO.remove(res);
+            resul.setResultado(true);
+        } catch (Exception e) {
+            resul.setMensaje("Error al eliminar el grupo + " + e.toString());
+        }
+
+        return resul;
+    }
+
+    @Override
+    public List<HorarioMateria> consultarTodosLosGrupos() {
+        return this.horarioMateriaDAO.findAll();
     }
 
 }

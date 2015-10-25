@@ -36,7 +36,14 @@
                 <div class="form-group">
                     <h:outputLabel for="idContrato" value="Ingrese el Tipo de Contrato: " styleClass="col-lg-2 control-label"></h:outputLabel>
                     <div class="col-lg-4">
-                        <h:inputText id="idContrato" value="#{adicionarProfesor.nuevoProfesor.tipoContrato}" pt:placeholder="Contrato" title="Tipo de Contrato" maxlength="10" required="true" requiredMessage="Error en el Tipo de Contrato" class="form-control"/>  
+
+                        <h:selectOneMenu id="idContrato" value="#{adicionarProfesor.nuevoProfesor.tipoContrato}" title="Tipo de Contrato" class="form-control" required="true" requiredMessage="Debe seleccionar el tipo de coontrato"> 
+                            <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
+                            <f:selectItem itemLabel="Planta" itemValue="PLA"></f:selectItem>
+                            <f:selectItem itemLabel="Transitorio tiempo completo" itemValue="TTC"></f:selectItem>
+                            <f:selectItem itemLabel="Transitorio medio tiempo" itemValue="TMT"></f:selectItem>
+                            <f:selectItem itemLabel="Catedratico" itemValue="CAT"></f:selectItem>
+                        </h:selectOneMenu>
                     </div>
                     <div class="col-lg-4">
                         <h:message for="idContrato" styleClass="alert alert-danger"></h:message>
@@ -49,6 +56,7 @@
                             <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
                             <f:selectItem itemLabel="Diurno" itemValue="D"></f:selectItem>
                             <f:selectItem itemLabel="Nocturno" itemValue="N"></f:selectItem>
+                            <f:selectItem itemLabel="Especial" itemValue="E"></f:selectItem>
                         </h:selectOneMenu>
                     </div>
                     <div class="col-lg-5">

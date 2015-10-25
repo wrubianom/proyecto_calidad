@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author WRubianoM
+ * @author William.Rubiano
  */
 @Entity
 @Table(name = "horario_profesor")
@@ -53,6 +53,9 @@ public class HorarioProfesor implements Serializable {
     @Size(max = 1)
     @Column(name = "manual")
     private String manual;
+    @JoinColumn(name = "id_horario_materia", referencedColumnName = "id_horario_materia")
+    @ManyToOne
+    private HorarioMateria idHorarioMateria;
     @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor")
     @ManyToOne
     private Profesor idProfesor;
@@ -102,6 +105,14 @@ public class HorarioProfesor implements Serializable {
 
     public void setManual(String manual) {
         this.manual = manual;
+    }
+
+    public HorarioMateria getIdHorarioMateria() {
+        return idHorarioMateria;
+    }
+
+    public void setIdHorarioMateria(HorarioMateria idHorarioMateria) {
+        this.idHorarioMateria = idHorarioMateria;
     }
 
     public Profesor getIdProfesor() {

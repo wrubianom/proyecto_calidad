@@ -6,11 +6,11 @@
 package com.softwarecalidad.DAO;
 
 import com.softwarecalidad.entidades.HorarioMateria;
-import com.softwarecalidad.entidades.Materia;
-import com.softwarecalidad.utilidades.ResultadoOperation;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -46,6 +46,21 @@ public class HorarioMateriaDAO extends AbstractFacade<HorarioMateria> {
         }
 
         return nuevoGrupo;
+    }
+
+    public List<HorarioMateria> consultarHorarioMateriaByIdMateria(Integer idMateria) throws Exception {
+        List<HorarioMateria> resultado = null;
+        try {
+            Query query = this.em.createNamedQuery("HorarioMateria.findByIdMateria");
+
+            query.setParameter("idMateriaInt", idMateria);
+
+            resultado = query.getResultList();
+            
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        return resultado;
     }
 
 }
