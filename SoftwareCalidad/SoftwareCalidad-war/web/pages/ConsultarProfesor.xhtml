@@ -16,29 +16,45 @@
                 </div>
                 <p:messages id="msgs01" autoUpdate="true" closable="true"/>
 
-                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="5" paginatorPosition="bottom" editable="true" draggableColumns="true">
+                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="5" paginatorPosition="bottom" editable="true" draggableColumns="true" emptyMessage="No hay Profesores Registrados" >
 
                     <f:facet name="header">
-                        Profesores
+                        Profesores                        
                         <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
                         <p:columnToggler datasource="tab-cours" trigger="toggler" /><br/>
                     </f:facet>
 
-                    <p:column headerText="Codigo" sortBy="#{varProfesor.codigo}">
+                    <p:column sortBy="#{varProfesor.codigo}">
+                        <f:facet name="header">
+                            <h:outputText value="Codigo" />
+                        </f:facet>
                         <h:outputLabel value="#{varProfesor.codigo}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Nombre" sortBy="#{varProfesor.nombre}">
+                    <p:column sortBy="#{varProfesor.nombre}">
+                        <f:facet name="header">
+                            <h:outputText value="Nombre" />
+                        </f:facet>
                         <h:outputLabel  value="#{varProfesor.nombre}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Tipo de Contrato" sortBy="#{varProfesor.tipoContrato}">
+                    <p:column sortBy="#{varProfesor.tipoContrato}">
+                        <f:facet name="header">
+                            <h:outputText value="Tipo de Contrato" />
+                        </f:facet>
                         <h:outputLabel value="#{varProfesor.tipoContrato}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column headerText="Disponibilidad" sortBy="#{varProfesor.disponibilidad}">
+                    <p:column sortBy="#{varProfesor.disponibilidad}">
+                        <f:facet name="header">
+                            <h:outputText value="Disponibilidad" />
+                        </f:facet>
                         <h:outputLabel value="#{varProfesor.disponibilidad}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
                 </p:dataTable>
                 <p:spacer/>
                 <br/>
+                <h:commandLink>
+                    <p:graphicImage name="/resources/img/pdf_icon.png" />
+                    <p:dataExporter type="pdf" target="tab-cours" fileName="profesores" pageOnly="false" />
+                </h:commandLink>
                 <h:commandButton styleClass="btn btn-info col-md-offset-5"  action="#{modificarProfesor.cargarProfesores()}" value="Consultar" title="Consultar" />
             </div>
             <br/>

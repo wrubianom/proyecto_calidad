@@ -15,7 +15,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Brian
+ * @author Sebastian Vega
  */
 @Stateless
 public class ProfesorDAO extends AbstractFacade<Profesor> {

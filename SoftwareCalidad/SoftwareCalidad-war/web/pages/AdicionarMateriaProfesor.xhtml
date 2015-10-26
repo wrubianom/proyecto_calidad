@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./../template/templateGeneral.xhtml">
+    <ui:define name="content">
+        <h:form id="tab-cours">               
+            <div class="col-md-offset-0 form-horizontal" >   
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Adicionar Materias al Profesor</i></font></h1>
+                        <p>Se realiza la asignación de materias a los profesores en el sistema</p>
+                    </div>
+                </div>
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/><br/>                
+                <div class="form-group">
+                    <h:outputLabel for="idPro" value="Seleccione Profesor: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                    <div class="col-lg-4">
+                        <h:selectOneMenu id="idPro" value="#{adicionarMateriaProfesorController.profesor.idProfesor}" title="Profesores" class="form-control" required="true" requiredMessage="Debe seleccionar la un profesor"> 
+                            <f:selectItems value="#{adicionarMateriaProfesorController.profesores}" var="items" itemLabel="#{items.nombre}" itemValue="#{items.idProfesor}"></f:selectItems>
+                        </h:selectOneMenu><br/>
+                        <p:commandButton  icon="ui-icon-check" styleClass="btn btn-success col-md-offset-2"  action="#{adicionarMateriaProfesorController.cargarMaterias()}" value="Cargar Materias" title="Materias Materias" update=":tab-cours"/>
+                    </div>
+                    <div class="col-lg-5">
+                        <h:message for="idPro" styleClass="alert alert-danger"></h:message>
+                    </div>
+                </div><br/>
+                <div class="form-group">
+                    <h:outputLabel for="idMat" value="Seleccione Materia: " styleClass="col-lg-2 control-label" ></h:outputLabel>
+                    <div class="col-lg-4">
+                        <p:selectManyCheckbox id="idMat" value="#{adicionarMateriaProfesorController.materiasCodigo}" layout="grid" columns="3" rendered="#{adicionarMateriaProfesorController.session}"> 
+                            <f:selectItems value="#{adicionarMateriaProfesorController.materias}" var="itemsM" itemLabel="#{itemsM.nombre}" itemValue="#{itemsM.idMateria}"></f:selectItems>
+                        </p:selectManyCheckbox>
+                    </div>
+                    <div class="col-lg-5">
+                        <h:message for="idMat" styleClass="alert alert-danger"></h:message>
+                    </div>
+                </div>
+                <p:commandButton  icon="ui-icon-check" styleClass="btn btn-info col-md-offset-2"  action="#{adicionarMateriaProfesorController.adicionarMaterias()}" value="Adicionar Materias" title="Adicionar Materias" />
+            </div>
+            <br/>
+        </h:form>
+    </ui:define>
+</ui:composition>

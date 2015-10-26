@@ -16,6 +16,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 
@@ -24,12 +25,13 @@ import org.primefaces.event.RowEditEvent;
  * @author Sebastian Vega
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class ModificarProfesor implements Serializable {
 
     @EJB
     private ProfesorEJBLocal profesorEJB;
 
+    private Profesor profesor;
     private ArrayList<Profesor> profesores = new ArrayList<Profesor>();
 
     public ModificarProfesor() {
@@ -53,15 +55,16 @@ public class ModificarProfesor implements Serializable {
         }
     }
 
-    public void eliminarProfesor(Profesor profesor){
-        try{
+    public void eliminarProfesor() {
+        try {
+            System.out.println("----------- "+profesor.getCodigo());
             profesores.remove(profesor);
-            
-        }catch(Exception ex){
+            //profesorEJB.eliminarProfesor(profesor);
+        } catch (Exception ex) {
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage());
         }
     }
-    
+
     public void onRowEdit(RowEditEvent event) {
         profesorEJB.modificarProfesor((Profesor) event.getObject());
         FacesMessage msg = new FacesMessage("Profesor Actualizado", ((Profesor) event.getObject()).toString());
@@ -79,6 +82,14 @@ public class ModificarProfesor implements Serializable {
 
     public void setProfesores(ArrayList<Profesor> profesores) {
         this.profesores = profesores;
+    }
+
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
 }

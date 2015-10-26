@@ -28,7 +28,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Sebastian Vega
  */
 @Entity
-@Cacheable
 @Table(name = "profesor")
 @XmlRootElement
 @NamedQueries({

@@ -50,6 +50,10 @@ public class Perfil implements Serializable {
         this.idPerfil = idPerfil;
     }
 
+    public Perfil(int materiasCodigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Integer getIdPerfil() {
         return idPerfil;
     }

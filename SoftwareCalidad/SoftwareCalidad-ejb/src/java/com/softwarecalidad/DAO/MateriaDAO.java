@@ -6,7 +6,6 @@
 package com.softwarecalidad.DAO;
 
 import com.softwarecalidad.entidades.Materia;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
