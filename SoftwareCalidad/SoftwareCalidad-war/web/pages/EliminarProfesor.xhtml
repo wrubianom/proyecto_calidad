@@ -34,7 +34,7 @@
                     <p:column headerText="Disponibilidad" sortBy="#{varProfesor.disponibilidad}">
                         <h:outputLabel value="#{varProfesor.disponibilidad}" styleClass="col-lg-2 control-label"></h:outputLabel>
                     </p:column>
-                    <p:column>
+                    <p:column headerText="Eliminar" class="text-center">
                         <p:commandButton update="@form" icon="ui-icon-trash" title="Eliminar" action="#{modificarProfesor.eliminarProfesor()}">
                             <f:setPropertyActionListener value="#{varProfesor}" target="#{modificarProfesor.profesor}" />
                         </p:commandButton>
