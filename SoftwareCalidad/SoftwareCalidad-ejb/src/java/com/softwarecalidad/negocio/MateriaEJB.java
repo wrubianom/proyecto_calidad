@@ -55,7 +55,12 @@ public class MateriaEJB implements MateriaEJBLocal {
         try{
             Materia result = this.materiaDAO.finByIdMateria(idMateria);
             if(result != null){
-                this.materiaDAO.remove(result);
+                if(result.getHorarioMateriaList().isEmpty()){
+                    this.materiaDAO.remove(result);
+                } else {
+                    resultado.setResultado(false);
+                    resultado.setMensaje("La materia con el id " + result.getCodigo() + " tiene asociado un grupo");
+                }
             } else {
                 resultado.setResultado(false);
                 resultado.setMensaje("La materia con el id " + result.getCodigo() + " no existe");
