@@ -56,7 +56,7 @@ public class Profesor implements Serializable {
     private String nombre;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 3)
     @Column(name = "tipo_contrato")
     private String tipoContrato;
     @Basic(optional = false)
@@ -167,4 +167,19 @@ public class Profesor implements Serializable {
         return "com.softwarecalidad.entidades.Profesor[ idProfesor=" + idProfesor + " ]";
     }
 
+    public String nombreTipoContrato() {
+        String tipo = this.tipoContrato;
+
+        switch (tipo) {
+            case "TTC":
+                return "Transitorio tiempo completo";
+            case "TMT":
+                return "Transitorio medio tiempo";
+            case "CAT":
+                return "Catedratico";
+            case "PLA":
+                return "Planta";
+        }
+        return "";
+    }
 }

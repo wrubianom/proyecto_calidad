@@ -26,19 +26,30 @@ public class ModificarMateriaController {
     
     @PostConstruct
     public void init(){
+        this.renderPanel = false;
         this.listaMaterias = materiaEJB.getAllMaterias();
+        this.idMateria = null;
+    }
+    
+    private List<Materia> listaMaterias;
+    private Integer idMateria;
+    private boolean renderPanel;
+
+    public boolean isRenderPanel() {
+        return renderPanel;
     }
 
+    public void setRenderPanel(boolean renderPanel) {
+        this.renderPanel = renderPanel;
+    }
+    
     public void setListaMaterias(List<Materia> listaMaterias) {
         this.listaMaterias = listaMaterias;
     }
 
-    public void setIdMateria(int idMateria) {
+    public void setIdMateria(Integer idMateria) {
         this.idMateria = idMateria;
     }
-    
-    private List<Materia> listaMaterias;
-    private int idMateria;
 
     public List<Materia> getListaMaterias() {
         return listaMaterias;
@@ -50,5 +61,9 @@ public class ModificarMateriaController {
     
     public void modificarMateria(){
         
+        this.renderPanel = false;
+        /*if(idMateria != null){
+            this.renderPanel = true;
+        }*/
     }
 }

@@ -9,21 +9,27 @@ import com.softwarecalidad.entidades.HorarioMateria;
 import com.softwarecalidad.entidades.Materia;
 import com.softwarecalidad.negocio.HorarioMateriaEJBLocal;
 import com.softwarecalidad.negocio.MateriaEJBLocal;
+import com.softwarecalidad.utilVista.DiasClaseUtil;
+import com.softwarecalidad.utilVista.HorasClaseUtil;
+import com.softwarecalidad.utilVista.OperacionesDiasUtil;
+import com.softwarecalidad.utilVista.OperacionesHorasClase;
 import com.softwarecalidad.utilidades.ResultadoOperation;
+import com.softwarecalidad.utilidades.UtilFaces;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ViewScoped;
+import javax.faces.event.ValueChangeEvent;
 
 /**
  *
  * @author WRubianoM
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class AdicionarGrupoController {
 
     @EJB
@@ -39,16 +45,36 @@ public class AdicionarGrupoController {
 
     private HorarioMateria nuevoGrupo;
     private List<Materia> listaMaterias;
+    private List<HorasClaseUtil> listaHorasUtil;
+    private List<DiasClaseUtil> listaDiasUtil;
 
     @PostConstruct
     private void init() {
         this.nuevoGrupo = new HorarioMateria();
         this.listaMaterias = materiaEJB.getAllMaterias();
         this.panelRenderizado = 0;
+        this.listaDiasUtil = new ArrayList<>();//OperacionesDiasUtil.getDiasSemana();
+        this.listaHorasUtil = new ArrayList<>();//OperacionesHorasClase.traerTodasLasHorasDeClase();
+    }
+
+    public List<DiasClaseUtil> getListaDiasUtil() {
+        return listaDiasUtil;
+    }
+
+    public void setListaDiasUtil(List<DiasClaseUtil> listaDiasUtil) {
+        this.listaDiasUtil = listaDiasUtil;
     }
 
     public Integer getRenderError() {
         return renderError;
+    }
+
+    public List<HorasClaseUtil> getListaHorasUtil() {
+        return listaHorasUtil;
+    }
+
+    public void setListaHorasUtil(List<HorasClaseUtil> listaHorasUtil) {
+        this.listaHorasUtil = listaHorasUtil;
     }
 
     public void setRenderError(Integer renderError) {
@@ -103,41 +129,30 @@ public class AdicionarGrupoController {
     }
 
     public void guardarGrupo() {
-
         this.panelRenderizado = 0;
+        System.out.println("La jornada es " + this.nuevoGrupo.getJornada());
         Materia materiaCon = new Materia(this.idMateria);
         this.nuevoGrupo.setIdMateria(materiaCon);
-
+        String trimGrupo = this.nuevoGrupo.getGrupo();
+        this.nuevoGrupo.setGrupo(trimGrupo.trim());
         ResultadoOperation res = this.horarioMateriaEJB.crearhorarioMateria(nuevoGrupo);
 
         if (res.isOk()) {
             this.panelRenderizado = this.renderOperacionOk;
 
-            System.out.println("Lo agrero correctamente");
-            System.out.println("Error : " + res.getMensaje());
-            FacesContext fc = FacesContext.getCurrentInstance();
-            FacesMessage mensaje = new FacesMessage();
-            mensaje.setSeverity(FacesMessage.SEVERITY_ERROR);
-            mensaje.setSummary("Lo agrero correctamente");
-            mensaje.setDetail("Lo agrero correctamente");
-            fc.addMessage("mensajeError", mensaje);
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "Agrego correctamente el grupo");
             this.iniciarAdicionarGrupo();
         } else {
             this.panelRenderizado = this.renderError;
-            System.out.println("Error : " + res.getMensaje());
-            FacesContext fc = FacesContext.getCurrentInstance();
-            FacesMessage mensaje = new FacesMessage();
-            mensaje.setSeverity(FacesMessage.SEVERITY_ERROR);
-            mensaje.setSummary(res.getMensaje());
-            mensaje.setDetail(res.getMensaje());
-            fc.addMessage("mensajeError", mensaje);
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Ocurrio un error al ingresar el grupo ... No se puede ingresar un horario igual para un mismo grupo");
         }
     }
 
     private void iniciarAdicionarGrupo() {
         this.nuevoGrupo = new HorarioMateria();
-        this.panelRenderizado = 0;
         this.idMateria = null;
+        this.listaDiasUtil = new ArrayList<>();
+        this.listaHorasUtil = new ArrayList<>();
     }
 
     public boolean renderizarPanel(Integer idPanelrender) {
@@ -147,5 +162,40 @@ public class AdicionarGrupoController {
             return true;
         }
         return false;
+    }
+
+    public void cambioJornada(ValueChangeEvent event) {
+        String jornadaSelect = ((String) event.getNewValue());
+
+        System.out.println("La jornada es " + jornadaSelect);
+
+        if (jornadaSelect.equals("E")) {
+            this.listaDiasUtil = OperacionesDiasUtil.getDiasEntreSemanaConSabado(true);
+        } else {
+            this.listaDiasUtil = OperacionesDiasUtil.getDiasEntreSemanaConSabado(false);
+        }
+    }
+
+    public void cambioDia(ValueChangeEvent event) {
+        String jornadaSelect = ((String) event.getNewValue());
+
+        // seis es sabado
+        System.out.println("el dia es " + jornadaSelect + " y la jornada " + this.nuevoGrupo.getJornada());
+
+        if (jornadaSelect.equals("6")) {
+            System.out.println("entro Dia 6");
+            this.listaHorasUtil = OperacionesHorasClase.traerHorasEspecialSabado();
+        } else {
+            System.out.println("No es sabadoS");
+
+            if (this.nuevoGrupo.getJornada().equals("E")) {
+                System.out.println("Entro por horas solo especial");
+                this.listaHorasUtil = OperacionesHorasClase.traerHorasEspecial();
+            } else {
+                System.out.println("Entro por horas diurnas");
+                this.listaHorasUtil = OperacionesHorasClase.traerHorasDiurnas();
+            }
+
+        }
     }
 }

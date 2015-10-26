@@ -6,8 +6,9 @@
 package com.softwarecalidad.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,22 +18,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author WRubianoM
+ * @author William.Rubiano
  */
 @Entity
-@Cacheable(false)
 @Table(name = "horario_materia")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "HorarioMateria.findAll", query = "SELECT h FROM HorarioMateria h"),
     @NamedQuery(name = "HorarioMateria.findByIdHorarioMateria", query = "SELECT h FROM HorarioMateria h WHERE h.idHorarioMateria = :idHorarioMateria"),
+    @NamedQuery(name = "HorarioMateria.findByIdMateria", query = "SELECT h FROM HorarioMateria h WHERE h.idMateria.idMateria = :idMateriaInt order by H.grupo"),
     @NamedQuery(name = "HorarioMateria.findByGrupo", query = "SELECT h FROM HorarioMateria h WHERE h.grupo = :grupo"),
     @NamedQuery(name = "HorarioMateria.findByDia", query = "SELECT h FROM HorarioMateria h WHERE h.dia = :dia"),
     @NamedQuery(name = "HorarioMateria.findByHora", query = "SELECT h FROM HorarioMateria h WHERE h.hora = :hora"),
@@ -40,7 +43,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "HorarioMateria.findBySemestre", query = "SELECT h FROM HorarioMateria h WHERE h.semestre = :semestre"),
     @NamedQuery(name = "HorarioMateria.findByJornada", query = "SELECT h FROM HorarioMateria h WHERE h.jornada = :jornada")})
 public class HorarioMateria implements Serializable {
-    
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -75,6 +79,8 @@ public class HorarioMateria implements Serializable {
     @JoinColumn(name = "id_materia", referencedColumnName = "id_materia")
     @ManyToOne
     private Materia idMateria;
+    @OneToMany(mappedBy = "idHorarioMateria",cascade = {CascadeType.ALL})
+    private List<HorarioProfesor> horarioProfesorList;
 
     public HorarioMateria() {
     }
@@ -155,6 +161,15 @@ public class HorarioMateria implements Serializable {
         this.idMateria = idMateria;
     }
 
+    @XmlTransient
+    public List<HorarioProfesor> getHorarioProfesorList() {
+        return horarioProfesorList;
+    }
+
+    public void setHorarioProfesorList(List<HorarioProfesor> horarioProfesorList) {
+        this.horarioProfesorList = horarioProfesorList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -179,5 +194,38 @@ public class HorarioMateria implements Serializable {
     public String toString() {
         return "com.softwarecalidad.entidades.HorarioMateria[ idHorarioMateria=" + idHorarioMateria + " ]";
     }
-    
+
+    public String getNombreDia() {
+        String dia = this.dia;
+        switch (dia) {
+            case "1":
+                return "lunes";
+            case "2":
+                return "Martes";
+            case "3":
+                return "Miercoles";
+            case "4":
+                return "Jueves";
+            case "5":
+                return "Viernes";
+            case "6":
+                return "Sabado";
+        }
+        return "";
+    }
+
+    public String getNombreJornada() {
+        String jorda = this.jornada;
+        System.out.println("La jornada es :" + this.jornada);
+        switch (jorda) {
+            case "N":
+                return "Nocturna";
+
+            case "D":
+                return "Diurna";
+            case "E":
+                return "Especial";
+        }
+        return "";
+    }
 }

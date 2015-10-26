@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./../template/templateGeneral.xhtml">
+
+    <ui:define name="content">
+        <h:form id="formulario">
+
+            <div class="text-center">
+                <div class="jumbotron">
+                    <h1>
+                        <div class="subtitulomodulo">
+                            <i>Eliminar un grupo asociado a un materia</i>
+                        </div>
+                    </h1>
+                    <p> Se eliminara el grupo al que esta asociado a una materia </p>
+                </div>
+            </div>
+
+            <h:panelGroup id="panelBusqueda">
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/><br/>
+                <div class="form-horizontal" style="margin-left: 20%">
+                    <div class="form-group">
+                        <h:outputLabel for="idMateria" value="Materia" styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:selectOneMenu class="form-control" id="idMateria" value="#{eliminarGrupoController.idMateria}" required="true" requiredMessage="Debe seleccionar una materia"> 
+                                <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+                                <f:selectItems value="#{eliminarGrupoController.listaMaterias}" var="items" itemLabel="#{items.nombre}" itemValue="#{items.idMateria}"></f:selectItems>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:message for="idMateria" styleClass="alert alert-danger"></h:message>
+                        </div>
+                    </div>
+                </div>
+            </h:panelGroup>
+            <div class="text-center">
+                <p:commandButton value="Consultar" 
+                                 styleClass="btn btn-info" 
+                                 update="panelMateriasEliminar panelBusqueda"
+                                 action="#{eliminarGrupoController.consultarMateria()}" ></p:commandButton>
+            </div>
+            <br/>
+            <h:panelGroup id="panelMateriasEliminar" >
+
+                <h:panelGroup rendered="#{eliminarGrupoController.encontroResultado}">
+
+                    <p:dataTable id="tab-cours" value="#{eliminarGrupoController.listGrupoMateria}" var="grupo">
+                        <p:column headerText="Grupo">
+                            <h:outputText value="#{grupo.grupo}" />
+                        </p:column>
+                        <p:column headerText="Horario">
+                            <h:outputText value="#{grupo.nombreDia} Hora Inicio: #{grupo.hora} Duracion: #{grupo.duracion}-hora" />
+                        </p:column>
+                        <p:column headerText="Jornada">
+                            <h:outputText value="#{grupo.nombreJornada}" />
+                        </p:column>
+                        <p:column headerText="Profesor asociado">
+                            <h:outputLabel value="#{eliminarGrupoController.getProfesorBylistaNombre(grupo.idHorarioMateria)}"></h:outputLabel>
+                        </p:column>
+                        <p:column headerText="Eliminar" class="text-center">
+                            <h:panelGroup>
+                                <h:commandButton styleClass="btn btn-danger" 
+                                                 value="Eliminar"
+                                                 action="#{eliminarGrupoController.eliminarGrupo(grupo.idHorarioMateria)}"
+                                                 >
+                                    <f:ajax render="panelMateriasEliminar tab-cours" execute="@form"></f:ajax>
+                                </h:commandButton>
+                            </h:panelGroup>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:form>
+        <br/>
+    </ui:define>
+
+</ui:composition>
