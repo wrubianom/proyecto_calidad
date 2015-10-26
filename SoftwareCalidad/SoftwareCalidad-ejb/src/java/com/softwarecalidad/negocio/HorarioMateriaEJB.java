@@ -7,8 +7,11 @@ package com.softwarecalidad.negocio;
 
 import com.softwarecalidad.DAO.HorarioMateriaDAO;
 import com.softwarecalidad.DAO.MateriaDAO;
+import com.softwarecalidad.DAO.ProfesorDAO;
 import com.softwarecalidad.entidades.HorarioMateria;
+import com.softwarecalidad.entidades.HorarioProfesor;
 import com.softwarecalidad.entidades.Materia;
+import com.softwarecalidad.entidades.Profesor;
 import com.softwarecalidad.utilidades.ResultadoOperation;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,6 +25,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class HorarioMateriaEJB implements HorarioMateriaEJBLocal {
+
+    @EJB
+    private com.softwarecalidad.DAO.HorarioProfesorDAO horarioProfesorDAO;
+
+    @EJB
+    private ProfesorDAO profesorDAO;
 
     @EJB
     private MateriaDAO materiaDAO;
@@ -81,6 +90,37 @@ public class HorarioMateriaEJB implements HorarioMateriaEJBLocal {
     @Override
     public List<HorarioMateria> consultarTodosLosGrupos() {
         return this.horarioMateriaDAO.findAll();
+    }
+
+    @Override
+    public ResultadoOperation asociarGrupoAProfesorManual(Integer profesorAsociar, Integer grupoAsociar) {
+        ResultadoOperation res = new ResultadoOperation(false);
+
+        try {
+            // se buscar el profesor
+            Profesor prof = this.profesorDAO.find(profesorAsociar);
+            HorarioMateria hm = this.horarioMateriaDAO.find(grupoAsociar);
+            HorarioProfesor horarioProfesor = new HorarioProfesor();
+            horarioProfesor.setIdHorarioMateria(hm);
+            horarioProfesor.setIdProfesor(prof);
+            horarioProfesor.setManual("M");
+            this.horarioProfesorDAO.create(horarioProfesor);
+            res.setResultado(true);
+        } catch (Exception e) {
+            res.setMensaje("Error al asociar el profesor a la asignatura seleccionada " + e.toString());
+        }
+        return res;
+    }
+
+    @Override
+    public List<HorarioMateria> consultarGruposNoAsociadosAProfesor(Integer idProfesor) {
+        List<HorarioMateria> resultado = null;
+        try {
+            resultado = this.horarioMateriaDAO.consultarGruposNoAsociadosProfesor(idProfesor);
+        } catch (Exception ex) {
+            Logger.getLogger(HorarioMateriaEJB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
     }
 
 }

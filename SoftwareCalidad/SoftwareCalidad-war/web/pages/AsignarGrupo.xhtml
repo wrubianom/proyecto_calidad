@@ -20,8 +20,6 @@
                 </div>
             </div>
 
-
-
             <h:panelGroup id="panelBusqueda">
                 <p:messages id="msgs01" autoUpdate="true" closable="true"/><br/>
                 <div class="form-horizontal" style="margin-left: 20%">
@@ -50,11 +48,11 @@
                                              id="idListaGrupo" 
                                              value="#{asociarGrupoController.idGrupoSelect}" 
                                              required="true" 
-                                             requiredMessage="Debe seleccionar un profesor"
-                                             valueChangeListener="#{asociarGrupoController.cambioProfesorChan}"> 
+                                             requiredMessage="Debe seleccionar un grupo"
+                                             valueChangeListener="#{asociarGrupoController.cambiogrupo}"> 
                                 <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
                                 <f:selectItems value="#{asociarGrupoController.listaGrupoFitrada}" var="items" itemLabel="#{items.idMateria.nombre} grupo #{items.grupo}" itemValue="#{items.idHorarioMateria}"></f:selectItems>
-
+                                <f:ajax event="change" render="panelBoton"></f:ajax>
                             </h:selectOneMenu>
                         </div>
                         <div class="col-lg-4">
@@ -63,7 +61,16 @@
                     </div>
                 </div>
             </h:panelGroup>
-
+            <div class="text-center">
+                <h:panelGroup id="panelBoton" >
+                    <h:commandButton 
+                                     value="Adicionar" 
+                                     styleClass="btn btn-info" 
+                                     action="#{asociarGrupoController.asociarGrupoProfesor()}" >
+                        
+                    </h:commandButton>
+                </h:panelGroup>
+            </div>
         </h:form>
     </ui:define>
 

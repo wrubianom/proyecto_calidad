@@ -24,4 +24,9 @@ public interface HorarioMateriaEJBLocal {
     public ResultadoOperation eliminarHorarioGrupoByidHorarioMateria(Integer idHorarioMateria);
     
     public List<HorarioMateria> consultarTodosLosGrupos();
+    
+    public List<HorarioMateria> consultarGruposNoAsociadosAProfesor(Integer idProfesor);
+    
+    public ResultadoOperation asociarGrupoAProfesorManual(Integer profesorAsociar, Integer grupoAsociar);
+    
 }

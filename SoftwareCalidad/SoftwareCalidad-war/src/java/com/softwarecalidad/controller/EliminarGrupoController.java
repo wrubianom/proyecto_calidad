@@ -2,6 +2,7 @@ package com.softwarecalidad.controller;
 
 import com.softwarecalidad.entidades.HorarioMateria;
 import com.softwarecalidad.entidades.Materia;
+import com.softwarecalidad.entidades.Profesor;
 import com.softwarecalidad.negocio.HorarioMateriaEJBLocal;
 import com.softwarecalidad.negocio.MateriaEJBLocal;
 import com.softwarecalidad.utilidades.ResultadoOperation;
@@ -33,9 +34,18 @@ public class EliminarGrupoController implements Serializable {
     private List<Materia> listaMaterias;
     private boolean encontroResultado;
     private List<HorarioMateria> listGrupoMateria;
+    private Profesor profesorSelect;
 
     public Integer getIdMateria() {
         return idMateria;
+    }
+
+    public Profesor getProfesorSelect() {
+        return profesorSelect;
+    }
+
+    public void setProfesorSelect(Profesor profesorSelect) {
+        this.profesorSelect = profesorSelect;
     }
 
     public void setIdMateria(Integer idMateria) {
@@ -71,6 +81,7 @@ public class EliminarGrupoController implements Serializable {
         this.listaMaterias = materiaEJB.getAllMaterias();
         this.encontroResultado = false;
         this.listGrupoMateria = new ArrayList<>();
+        this.profesorSelect = new Profesor();
     }
 
     public EliminarGrupoController() {
@@ -109,6 +120,58 @@ public class EliminarGrupoController implements Serializable {
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Ocurrio un error al eliminar el grupo");
             System.out.println("Error : " + res.getMensaje());
         }
+    }
+
+    public void iniciarPopUp(Integer idhorarioMateriaEli) {
+        this.profesorSelect = this.getProfesorBylista(idhorarioMateriaEli);
+    }
+
+    public Profesor getProfesorBylista(Integer idhorarioMateriaEli) {
+        HorarioMateria hm = null;
+        Profesor prof = new Profesor();
+        System.out.println("entro1111111");
+        for (HorarioMateria item : listGrupoMateria) {
+            if (item.getIdHorarioMateria().equals(idhorarioMateriaEli)) {
+                hm = item;
+                System.out.println("entro1");
+                break;
+            }
+        }
+        if (hm != null && !hm.getHorarioProfesorList().isEmpty()) {
+            prof = hm.getHorarioProfesorList().get(0).getIdProfesor();
+            System.out.println("entro2");
+        }
+        if (prof != null) {
+            System.out.println("el profesor es " + prof.getNombre());
+        }
+
+        return prof;
+    }
+
+    public String getProfesorBylistaNombre(Integer idhorarioMateriaEli) {
+        HorarioMateria hm = null;
+        Profesor prof = new Profesor();
+        System.out.println("entro1111111");
+        for (HorarioMateria item : listGrupoMateria) {
+            if (item.getIdHorarioMateria().equals(idhorarioMateriaEli)) {
+                hm = item;
+                System.out.println("entro1");
+                break;
+            }
+        }
+        if (hm != null && !hm.getHorarioProfesorList().isEmpty()) {
+            prof = hm.getHorarioProfesorList().get(0).getIdProfesor();
+            System.out.println("entro2");
+        }
+        if (prof != null) {
+            System.out.println("el profesor es " + prof.getNombre());
+            return prof.getNombre();
+        }
+
+        return "No registra";
+    }
+
+    public void eliminarMateria() {
 
     }
 }

@@ -8,6 +8,7 @@ package com.softwarecalidad.entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -78,7 +79,7 @@ public class HorarioMateria implements Serializable {
     @JoinColumn(name = "id_materia", referencedColumnName = "id_materia")
     @ManyToOne
     private Materia idMateria;
-    @OneToMany(mappedBy = "idHorarioMateria")
+    @OneToMany(mappedBy = "idHorarioMateria",cascade = {CascadeType.ALL})
     private List<HorarioProfesor> horarioProfesorList;
 
     public HorarioMateria() {

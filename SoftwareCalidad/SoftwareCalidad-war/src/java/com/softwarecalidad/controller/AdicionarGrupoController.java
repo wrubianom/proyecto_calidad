@@ -133,7 +133,8 @@ public class AdicionarGrupoController {
         System.out.println("La jornada es " + this.nuevoGrupo.getJornada());
         Materia materiaCon = new Materia(this.idMateria);
         this.nuevoGrupo.setIdMateria(materiaCon);
-
+        String trimGrupo = this.nuevoGrupo.getGrupo();
+        this.nuevoGrupo.setGrupo(trimGrupo.trim());
         ResultadoOperation res = this.horarioMateriaEJB.crearhorarioMateria(nuevoGrupo);
 
         if (res.isOk()) {

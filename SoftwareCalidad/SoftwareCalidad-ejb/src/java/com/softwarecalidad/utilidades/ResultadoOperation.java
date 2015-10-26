@@ -34,4 +34,8 @@ public class ResultadoOperation {
 
     }
 
+    public ResultadoOperation(boolean res) {
+        this.resultado = res;
+    }
+
 }
