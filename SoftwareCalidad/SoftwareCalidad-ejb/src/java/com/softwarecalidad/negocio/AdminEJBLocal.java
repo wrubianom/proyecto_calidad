@@ -5,7 +5,7 @@
  */
 package com.softwarecalidad.negocio;
 
-import com.softwarecalidad.entidades.Profesor;
+import com.softwarecalidad.entidades.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,13 +14,13 @@ import javax.ejb.Local;
  * @author Sebastian Vega
  */
 @Local
-public interface ProfesorEJBLocal {
+public interface AdminEJBLocal {
 
-    public boolean crearProfesor(Profesor nuevoProfesor);
+    public boolean crearUsuario(Usuario usuario);
 
-    public void modificarProfesor(Profesor profesor);
+    public void modificarUsuario(Usuario usuario);
 
-    public void eliminarProfesor(Profesor profesor);
+    public void eliminarUsuario(Usuario usuario);
 
-    public List<Profesor> findAllProfesor();
+    public List<Usuario> findAllUsuario();
 }

@@ -15,55 +15,59 @@
                     </div>
                 </div>
                 <p:messages id="msgs01" autoUpdate="true" closable="true"/><br/>
-                <div class="form-group">
-                    <h:outputLabel for="idCodigo" value="Ingrese el Codigo: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4 col-sm-4">
-                        <h:inputText id="idCodigo" value="#{adicionarProfesor.nuevoProfesor.codigo}" pt:placeholder="Codigo" title="Codigo del Profesor" maxlength="10" required="true" requiredMessage="Error en el Codigo" class="form-control"/>  
+                <div style="margin-left: 25%">
+                    <div class="form-group">
+                        <h:outputLabel for="idCodigo" value="Ingrese el Codigo: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4 col-sm-4">
+                            <h:inputText id="idCodigo" value="#{adicionarProfesor.nuevoProfesor.codigo}" pt:placeholder="Codigo" title="Codigo del Profesor"  validatorMessage="Error Solo Números"  required="true" requiredMessage="Error en el Codigo" class="form-control">
+                                <f:validateDoubleRange minimum="1000" maximum="10000000000" />
+                            </h:inputText>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <h:message for="idCodigo" styleClass="alert alert-danger"></h:message>
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-sm-4">
-                        <h:message for="idCodigo" styleClass="alert alert-danger"></h:message>
+                    <div class="form-group">
+                        <h:outputLabel for="idNombre" value="Ingrese el Nombre: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:inputText id="idNombre" value="#{adicionarProfesor.nuevoProfesor.nombre}" pt:placeholder="Nombre" title="Nombre del Profesor" maxlength="10" required="true" requiredMessage="Error en el Nombre" validatorMessage="Error Solo Letras" class="form-control">
+                                <f:validateRegex pattern="^[a-zA-Z]+$" />
+                            </h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:message for="idNombre" styleClass="alert alert-danger"></h:message>
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <h:outputLabel for="idContrato" value="Ingrese el Tipo de Contrato: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:selectOneMenu id="idContrato" value="#{adicionarProfesor.nuevoProfesor.tipoContrato}" title="Tipo de Contrato" class="form-control" required="true" requiredMessage="Debe seleccionar el tipo de coontrato"> 
+                                <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
+                                <f:selectItem itemLabel="Planta" itemValue="PLA"></f:selectItem>
+                                <f:selectItem itemLabel="Transitorio tiempo completo" itemValue="TTC"></f:selectItem>
+                                <f:selectItem itemLabel="Transitorio medio tiempo" itemValue="TMT"></f:selectItem>
+                                <f:selectItem itemLabel="Catedratico" itemValue="CAT"></f:selectItem>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:message for="idContrato" styleClass="alert alert-danger"></h:message>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="idDis" value="Ingrese la Disponibilidad: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:selectOneMenu id="idDis" value="#{adicionarProfesor.nuevoProfesor.disponibilidad}" title="Disponibilidad" class="form-control" required="true" requiredMessage="Debe seleccionar la disponibilidad"> 
+                                <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
+                                <f:selectItem itemLabel="Diurno" itemValue="D"></f:selectItem>                            
+                                <f:selectItem itemLabel="Especial" itemValue="E"></f:selectItem>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col-lg-5">
+                            <h:message for="idDis" styleClass="alert alert-danger"></h:message>
+                        </div>
+                    </div>
+                    <h:commandButton styleClass="btn btn-info col-md-offset-2"  action="#{adicionarProfesor.crearProfesor()}" value="Adicionar Profesor" title="Adicionar Profesor" />
                 </div>
-                <div class="form-group">
-                    <h:outputLabel for="idNombre" value="Ingrese el Nombre: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4">
-                        <h:inputText id="idNombre" value="#{adicionarProfesor.nuevoProfesor.nombre}" pt:placeholder="Nombre" title="Nombre del Profesor" maxlength="10" required="true" requiredMessage="Error en el Nombre" class="form-control"/>  
-                    </div>
-                    <div class="col-lg-4">
-                        <h:message for="idNombre" styleClass="alert alert-danger"></h:message>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <h:outputLabel for="idContrato" value="Ingrese el Tipo de Contrato: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4">
-
-                        <h:selectOneMenu id="idContrato" value="#{adicionarProfesor.nuevoProfesor.tipoContrato}" title="Tipo de Contrato" class="form-control" required="true" requiredMessage="Debe seleccionar el tipo de coontrato"> 
-                            <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
-                            <f:selectItem itemLabel="Planta" itemValue="PLA"></f:selectItem>
-                            <f:selectItem itemLabel="Transitorio tiempo completo" itemValue="TTC"></f:selectItem>
-                            <f:selectItem itemLabel="Transitorio medio tiempo" itemValue="TMT"></f:selectItem>
-                            <f:selectItem itemLabel="Catedratico" itemValue="CAT"></f:selectItem>
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="col-lg-4">
-                        <h:message for="idContrato" styleClass="alert alert-danger"></h:message>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <h:outputLabel for="idDis" value="Ingrese la Disponibilidad: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4">
-                        <h:selectOneMenu id="idDis" value="#{adicionarProfesor.nuevoProfesor.disponibilidad}" title="Disponibilidad" class="form-control" required="true" requiredMessage="Debe seleccionar la disponibilidad"> 
-                            <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
-                            <f:selectItem itemLabel="Diurno" itemValue="D"></f:selectItem>
-                            <f:selectItem itemLabel="Nocturno" itemValue="N"></f:selectItem>
-                            <f:selectItem itemLabel="Especial" itemValue="E"></f:selectItem>
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="col-lg-5">
-                        <h:message for="idDis" styleClass="alert alert-danger"></h:message>
-                    </div>
-                </div>
-                <h:commandButton styleClass="btn btn-info col-md-offset-2"  action="#{adicionarProfesor.crearProfesor()}" value="Adicionar Profesor" title="Adicionar Profesor" />
             </div>
             <br/>
         </h:form>

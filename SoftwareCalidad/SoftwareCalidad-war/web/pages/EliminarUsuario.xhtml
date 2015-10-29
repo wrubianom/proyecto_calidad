@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./../template/templateGeneral.xhtml">
+    <ui:define name="content">
+        <h:form >               
+            <div class="col-md-offset-0 form-horizontal" >   
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Eliminar Usuario</i></font></h1>
+                        <p>Se realiza la eliminación de un usuario determinado</p>
+                    </div>
+                </div>
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/>
+
+                <p:dataTable id="tab-cours" var="varAdmin" value="#{modificarAdministradorController.usuarios}" paginator="true" rows="5" paginatorPosition="bottom" editable="true" draggableColumns="true" emptyMessage="No hay Usuarios en el Sistema">
+
+                    <f:facet name="header">
+                        Usuarios
+                    </f:facet>
+
+                    <p:column headerText="ID" sortBy="#{varAdmin.idUsuario}">
+                        <h:outputLabel value="#{varAdmin.idUsuario}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="UserName" sortBy="#{varAdmin.login}">
+                        <h:outputLabel  value="#{varAdmin.login}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Nombre" sortBy="#{varAdmin.nombre}">
+                        <h:outputLabel value="#{varAdmin.nombre}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Tipo" sortBy="#{varAdmin.tipo}">
+                        <h:outputLabel value="#{varAdmin.tipo}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Eliminar" class="text-center">
+                        <p:commandButton update="@form" icon="ui-icon-trash" title="Eliminar" action="#{modificarAdministradorController.eliminarUsuario()}">
+                            <f:setPropertyActionListener value="#{varAdmin}" target="#{modificarAdministradorController.usuario}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                <p:spacer/>
+                <br/>
+            </div>
+            <br/>
+        </h:form>
+    </ui:define>
+</ui:composition>

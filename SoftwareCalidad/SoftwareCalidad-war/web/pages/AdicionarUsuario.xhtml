@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./../template/templateGeneral.xhtml">
+    <ui:define name="content">
+        <h:form>               
+            <div class="col-md-offset-0 form-horizontal" >   
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Adicionar Usuario</i></font></h1>
+                        <p>Se realiza la creación de los usuarios en el sistema</p>
+                    </div>
+                </div>
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/>
+                <div style="margin-left: 25%">
+                    <div class="form-group">
+                        <h:outputLabel for="idLogin" value="Ingrese el UserName: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4 col-sm-4">
+                            <h:inputText id="idCodigo" value="#{administradorController.admin.login}" pt:placeholder="UserName" title="UserName" maxlength="10" required="true" requiredMessage="Error en el UserName" class="form-control"/>  
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <h:message for="idCodigo" styleClass="alert alert-danger"></h:message>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="idNombre" value="Ingrese el Nombre: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:inputText id="idNombre" value="#{administradorController.admin.nombre}" pt:placeholder="Nombre" title="Nombre" maxlength="10" required="true" validatorMessage="Error Solo Letras" requiredMessage="Error en el Nombre" class="form-control">
+                                <f:validateRegex pattern="^[a-zA-Z]+$" />
+                            </h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:message for="idNombre" styleClass="alert alert-danger"></h:message>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="idDis" value="Tipo de Usuario: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:selectOneMenu id="idDis" value="#{administradorController.admin.tipo}" title="Tipo de Usuario" class="form-control" required="true" requiredMessage="Debe seleccionar el Tipo de Usuario"> 
+                                <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
+                                <f:selectItem itemLabel="Administrador" itemValue="admin"></f:selectItem>                            
+                                <f:selectItem itemLabel="Usuario" itemValue="user"></f:selectItem>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col-lg-5">
+                            <h:message for="idDis" styleClass="alert alert-danger"></h:message>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="idClave" value="Ingrese la Clave: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <p:password id="idClave" value="#{administradorController.admin.clave}" feedback="true" pt:placeholder="Clave" title="Clave" maxlength="50" required="true" requiredMessage="Error en la Clave" class="form-control"
+                                        promptLabel="Por favor ingrese la contraseña" weakLabel="Devil"
+                                        goodLabel="Medio" strongLabel="Segura" />
+                        </div>
+                        <div class="col-lg-4">
+                            <h:message for="idClave" styleClass="alert alert-danger"></h:message>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="idConClave" value="Confirme la Clave: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <p:password id="idConClave" value="#{administradorController.password}" feedback="true" pt:placeholder="Clave" title="Clave" maxlength="50" required="true" requiredMessage="Error al confirmar la Clave" class="form-control"
+                                        promptLabel="Por favor ingrese la contraseña" weakLabel="Devil"
+                                        goodLabel="Medio" strongLabel="Segura" />
+                        </div>
+                        <div class="col-lg-4">
+                            <h:message for="idConClave" styleClass="alert alert-danger"></h:message>
+                        </div>
+                    </div>
+                    <h:commandButton styleClass="btn btn-info col-md-offset-2" action="#{administradorController.adicionarAdmin()}" value="Adicionar Administrador" title="Adicionar Administrador" />
+                </div>
+            </div>
+            <br/>
+        </h:form>
+    </ui:define>
+</ui:composition>

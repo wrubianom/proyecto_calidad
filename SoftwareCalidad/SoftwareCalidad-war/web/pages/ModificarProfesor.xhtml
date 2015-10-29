@@ -16,7 +16,7 @@
                 </div>
                 <p:messages id="msgs01" autoUpdate="true" closable="true"/>
 
-                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="5" paginatorPosition="bottom" editable="true" draggableColumns="true">
+                <p:dataTable id="tab-cours" var="varProfesor" value="#{modificarProfesor.profesores}" paginator="true" rows="5" paginatorPosition="bottom" editable="true" draggableColumns="true" emptyMessage="No hay Profesores en el Sistema">
 
                     <p:ajax event="rowEdit" listener="#{modificarProfesor.onRowEdit}" update=":form-tab-cours-02:msgs01" />
                     <p:ajax event="rowEditCancel" listener="#{modificarProfesor.onRowCancel}" update=":form-tab-cours-02:msgs01" />
@@ -40,17 +40,27 @@
                     <p:column headerText="Tipo de Contrato" sortBy="#{varProfesor.tipoContrato}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varProfesor.tipoContrato}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varProfesor.tipoContrato}" style="width:100%"/></f:facet>
+                            <f:facet name="input">
+                                <h:selectOneMenu id="idContrato" value="#{varProfesor.tipoContrato}" style="width:100%" title="Tipo de Contrato" class="form-control" requiredMessage="Debe seleccionar el tipo de contrato"> 
+                                    <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
+                                    <f:selectItem itemLabel="Planta" itemValue="PLA"></f:selectItem>
+                                    <f:selectItem itemLabel="Transitorio tiempo completo" itemValue="TTC"></f:selectItem>
+                                    <f:selectItem itemLabel="Transitorio medio tiempo" itemValue="TMT"></f:selectItem>
+                                    <f:selectItem itemLabel="Catedratico" itemValue="CAT"></f:selectItem>
+                                </h:selectOneMenu>
+                            </f:facet>
                         </p:cellEditor> 
                     </p:column>
                     <p:column headerText="Disponibilidad" sortBy="#{varProfesor.disponibilidad}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varProfesor.disponibilidad}" /></f:facet>
-                            <f:facet name="input"><h:selectOneMenu id="idDis" value="#{adicionarProfesor.nuevoProfesor.disponibilidad}" style="width:100%"> 
+                            <f:facet name="input">
+                                <h:selectOneMenu id="idDis" value="#{adicionarProfesor.nuevoProfesor.disponibilidad}" style="width:100%" title="Disponibilidad" class="form-control"> 
                                     <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
-                                    <f:selectItem itemLabel="Jornada Diurna" itemValue="D"></f:selectItem>
-                                    <f:selectItem itemLabel="Jornada Nocturna" itemValue="N"></f:selectItem>
-                                </h:selectOneMenu></f:facet>
+                                    <f:selectItem itemLabel="Diurno" itemValue="D"></f:selectItem>                            
+                                    <f:selectItem itemLabel="Especial" itemValue="E"></f:selectItem>
+                                </h:selectOneMenu>
+                            </f:facet>
                         </p:cellEditor> 
                     </p:column>
                     <p:column style="width:32px">

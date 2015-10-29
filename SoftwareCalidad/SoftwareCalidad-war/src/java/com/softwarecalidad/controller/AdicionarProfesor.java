@@ -47,10 +47,11 @@ public class AdicionarProfesor implements Serializable {
                 UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_FATAL, "Error en el Tipo de Contrato");
             } else {
                 boolean ban = profesorEJB.crearProfesor(nuevoProfesor);
-                if (ban)
-                    UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Profesor a sido Agregado");
-                else 
+                if (ban) {
+                    UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Profesor ha sido Agregado");
+                } else {
                     UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error verifique los datos del profesor");
+                }
             }
         } catch (Exception ex) {
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage());
