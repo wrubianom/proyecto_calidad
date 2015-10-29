@@ -8,8 +8,10 @@ package com.softwarecalidad.controller;
 import com.softwarecalidad.entidades.Materia;
 import com.softwarecalidad.negocio.MateriaEJBLocal;
 import com.softwarecalidad.utilidades.ResultadoOperation;
+import com.softwarecalidad.utilidades.UtilFaces;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -48,9 +50,9 @@ public class AdicionarMateriaController {
     public void crearMateria(){
         ResultadoOperation resultado = this.materiaEJB.adicionarMateria(nuevaMateria);
         if(resultado.isOk()){
-            System.out.println("La creo correctamente");
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, resultado.getMensaje());
         } else {
-            System.out.println(resultado.getMensaje());
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, resultado.getMensaje());
         }
     }
 }

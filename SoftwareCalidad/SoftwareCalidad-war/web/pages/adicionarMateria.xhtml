@@ -15,52 +15,56 @@
                     </div>
                 </div>
                 <p:messages id="msgs01" autoUpdate="true" closable="true"/><br/>
-                <div class="form-group">
-                    <h:outputLabel value="Código: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4">
-                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.codigo}" maxlength="50"  required="true" requiredMessage="Error en el Codigo" class="form-control"/>
+                <div style="margin-left: 25%">
+                    <div class="form-group">
+                        <h:outputLabel value="Código: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.codigo}" maxlength="50" pt:placeholder="Código" required="true" requiredMessage="Error en el Codigo" class="form-control"/>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <h:outputLabel value="Nombre: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4">
-                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.nombre}" maxlength="50" required="true" requiredMessage="Error en el Nombre" class="form-control"/>
+
+                    <div class="form-group">
+                        <h:outputLabel value="Nombre: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.nombre}" maxlength="50" pt:placeholder="Nombre" required="true" requiredMessage="Error en el Nombre" class="form-control">
+                                <f:validateRegex pattern="^[a-zA-Z]+$" />
+                            </h:inputText>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <h:outputLabel value="Tipo: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4">
-                        <h:selectOneMenu value="#{adicionarMateriaController.nuevaMateria.tipo}" class="form-control" required="true" requiredMessage="Debe seleccionar la disponibilidad">
-                            <f:selectItem itemValue="T" itemLabel="Teórica" />
-                            <f:selectItem itemValue="P" itemLabel="Práctica" />
-                        </h:selectOneMenu>
+
+                    <div class="form-group">
+                        <h:outputLabel value="Tipo: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:selectOneMenu value="#{adicionarMateriaController.nuevaMateria.tipo}" class="form-control" required="true" requiredMessage="Debe seleccionar la disponibilidad">
+                                <f:selectItem itemValue="T" itemLabel="Teórica" />
+                                <f:selectItem itemValue="P" itemLabel="Práctica" />
+                            </h:selectOneMenu>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <h:outputLabel value="Créditos: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4">
-                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.creditos}" required="true" maxlength="1" requiredMessage="Error en el Nombre" class="form-control"/>
+
+                    <div class="form-group">
+                        <h:outputLabel value="Créditos: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.creditos}" pt:placeholder="Créditos" required="true" maxlength="1" requiredMessage="Error en el Nombre" class="form-control"/>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <h:outputLabel value="Intensidad Horaria: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4">
-                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.ih}" required="true" maxlength="1" requiredMessage="Error en el Nombre" class="form-control"/>
+
+                    <div class="form-group">
+                        <h:outputLabel value="Intensidad Horaria: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.ih}" pt:placeholder="Intensidad Horaria" required="true" maxlength="1" requiredMessage="Error en el Nombre" class="form-control"/>
+                        </div>
                     </div>
-                </div>
-                                
-                <div class="form-group">
-                    <h:outputLabel value="Semestre: " styleClass="col-lg-2 control-label"></h:outputLabel>
-                    <div class="col-lg-4">
-                        <h:inputText value="#{adicionarMateriaController.nuevaMateria.semestre}" required="true" maxlength="1" requiredMessage="Error en el Nombre" class="form-control"/>
+
+                    <div class="form-group">
+                        <h:outputLabel value="Semestre: " styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.semestre}" pt:placeholder="Semestre" required="true" maxlength="1" requiredMessage="Error en el Nombre" class="form-control"/>
+                        </div>
                     </div>
+                    <h:commandButton styleClass="btn btn-info col-md-offset-2"  action="#{adicionarMateriaController.crearMateria()}" value="Adicionar Materia"></h:commandButton>
                 </div>
             </div>
-            <h:commandButton styleClass="btn btn-info col-md-offset-2"  action="#{adicionarMateriaController.crearMateria()}" value="Adicionar"></h:commandButton>
         </h:form>
     </ui:define>
 

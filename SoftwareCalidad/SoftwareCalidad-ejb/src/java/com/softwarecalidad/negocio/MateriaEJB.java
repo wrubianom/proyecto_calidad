@@ -33,6 +33,7 @@ public class MateriaEJB implements MateriaEJBLocal {
                 resultado.setMensaje("La materia con el id " + nuevaMateria.getCodigo() + " ya se encuentra registrada");
             } else {
                 this.materiaDAO.create(nuevaMateria);
+                resultado.setMensaje("La materia con el id " + nuevaMateria.getCodigo() + " fue creada correctamente");
             }
         } catch(Exception e){
             resultado.setResultado(false);
@@ -57,6 +58,8 @@ public class MateriaEJB implements MateriaEJBLocal {
             if(result != null){
                 if(result.getHorarioMateriaList().isEmpty()){
                     this.materiaDAO.remove(result);
+                    resultado.setResultado(true);
+                    resultado.setMensaje("La materia con el id " + result.getCodigo() + " fue eliminada");
                 } else {
                     resultado.setResultado(false);
                     resultado.setMensaje("La materia con el id " + result.getCodigo() + " tiene asociado un grupo");
@@ -72,4 +75,21 @@ public class MateriaEJB implements MateriaEJBLocal {
         }
         return resultado;
     }
+
+    @Override
+    public ResultadoOperation modificarMateria(Materia materia) {
+        ResultadoOperation resultado = new ResultadoOperation();
+        resultado.setResultado(true);
+        try{
+            this.materiaDAO.edit(materia);
+            resultado.setMensaje("La materia con el id " + materia.getCodigo() + " fue modificada");
+        } catch(Exception e){
+            resultado.setResultado(false);
+            resultado.setMensaje("error al editar materia en capa de negocio ResultadoOperation");
+            System.out.println("Error al editar materia ");
+        }
+        return null;
+    }
+    
+    
 }

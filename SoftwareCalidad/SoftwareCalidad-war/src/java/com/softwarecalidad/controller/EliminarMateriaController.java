@@ -67,9 +67,9 @@ public class EliminarMateriaController {
             ResultadoOperation resultado = this.materiaEJB.eliminarMateria(materia.getIdMateria());
             if(resultado.isOk()){
                 listaMaterias.remove(materia);
-                System.out.println("La eliminó correctamente");
+                UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, resultado.getMensaje());
             } else {
-                System.out.println(resultado.getMensaje());
+                UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, resultado.getMensaje());
             }
         } catch (Exception ex) {
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage());
