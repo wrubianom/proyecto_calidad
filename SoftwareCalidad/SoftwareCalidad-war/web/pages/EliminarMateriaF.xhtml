@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./../template/templateGeneral.xhtml">
+    <ui:define name="content">
+        <h:form >               
+            <div class="col-md-offset-0 form-horizontal" >   
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Eliminar Materia</i></font></h1>
+                        <p>Se realiza la eliminación de una materia determinada</p>
+                    </div>
+                </div>
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/>
+
+                <p:dataTable id="tab-cours" var="varMateria" value="#{eliminarMateriaController.listaMaterias}" paginator="true" rows="7" paginatorPosition="bottom" editable="true" draggableColumns="true" emptyMessage="No hay Materias en el Sistema">
+
+                    <f:facet name="header">
+                        Materias
+                    </f:facet>
+                    
+                    <p:column headerText="Codigo" sortBy="#{varMateria.codigo}">
+                        <h:outputLabel value="#{varMateria.codigo}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Nombre" sortBy="#{varMateria.nombre}">
+                        <h:outputLabel value="#{varMateria.nombre}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Tipo" sortBy="#{varMateria.tipo}">
+                        <h:outputLabel value="#{varMateria.tipo == 'T' ? 'Teórica':'Práctica'}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Créditos" sortBy="#{varMateria.creditos}">
+                        <h:outputLabel value="#{varMateria.creditos}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Intensidad Horaria" sortBy="#{varMateria.ih}">
+                        <h:outputLabel value="#{varMateria.ih}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column headerText="Semestre" sortBy="#{varMateria.semestre}">
+                        <h:outputLabel value="#{varMateria.semestre}" styleClass="col-lg-2 control-label"></h:outputLabel>
+                    </p:column>
+                    <p:column>  
+                        <p:commandButton update="@form" icon="ui-icon-trash" title="Eliminar" action="#{eliminarMateriaController.eliminarMateria()}">
+                            <f:setPropertyActionListener value="#{varMateria}" target="#{eliminarMateriaController.materia}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                <p:spacer/>
+                <br/>
+                <!--   <h:commandButton styleClass="btn btn-info col-md-offset-5"  action="#//{modificarProfesor.cargarProfesores()}" value="Consultar" title="Consultar" /> -->
+            </div>
+            <br/>
+        </h:form>
+    </ui:define>
+</ui:composition>

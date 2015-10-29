@@ -1,27 +1,81 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 template="./../template/templateGeneral.xhtml">
-
     <ui:define name="content">
-        Modificar Materia 1
-        <h:form>
-            <h:panelGrid columns="2">
-                <h:outputLabel for="idMateria" value="Materia" ></h:outputLabel>
-                <h:selectOneMenu id="idMateria" value="#{modificarMateriaController.idMateria}" required="true" requiredMessage="Debe seleccionar una materia"> 
-                    <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
-                    <f:selectItems value="#{modificarMateriaController.listaMaterias}" var="items" itemLabel="#{items.nombre}" itemValue="#{items.idMateria}"></f:selectItems>
-                </h:selectOneMenu>
-            </h:panelGrid>
-            
-            <h:commandButton value="Enviar" action="#{modificarMateriaController.modificarMateria()}"></h:commandButton>
-            <h:panelGroup id="panelModificarMateria" rendered="#{modificarMateriaController.renderPanel}">
-                asasdfa
-            </h:panelGroup>
+        <h:form id="form-tab-cours-02">               
+            <div class="col-md-offset-0 form-horizontal" >   
+                <div class="text-center">
+                    <div class="jumbotron">
+                        <h1><font color="black" face="Times New Roman"><i>Modificar Materia</i></font></h1>
+                        <p>Se realiza la modificación sobre los datos de una materia determinada</p>
+                    </div>
+                </div>
+                <p:messages id="msgs01" autoUpdate="true" closable="true"/>
+
+                <p:dataTable id="tab-cours" var="varMateria" value="#{modificarMateriaController.listaMaterias}" paginator="true" rows="7" paginatorPosition="bottom" editable="true" draggableColumns="true">
+
+                    <p:ajax event="rowEdit" listener="#{modificarMateriaController.onRowEdit}" update=":form-tab-cours-02:msgs01" />
+                    <p:ajax event="rowEditCancel" listener="#{modificarMateriaController.onRowCancel}" update=":form-tab-cours-02:msgs01" />
+
+                    <f:facet name="header">
+                        Profesores
+                    </f:facet>
+
+                    <p:column headerText="Codigo" sortBy="#{varMateria.codigo}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varMateria.codigo}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varMateria.codigo}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Nombre" sortBy="#{varMateria.nombre}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varMateria.nombre}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varMateria.nombre}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Tipo" sortBy="#{varMateria.tipo}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varMateria.tipo == 'T' ? 'Teórica':'Práctica'}" /></f:facet>
+                            <f:facet name="input">
+                                <h:selectOneMenu id="idTipo" style="width:100%">
+                                    <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
+                                    <f:selectItem itemLabel="Teórica" itemValue="T"></f:selectItem>
+                                    <f:selectItem itemLabel="Práctica" itemValue="P "></f:selectItem>
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Créditos" sortBy="#{varMateria.creditos}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varMateria.creditos}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varMateria.creditos}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Intensidad Horaria" sortBy="#{varMateria.ih}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varMateria.ih}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varMateria.ih}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Semestre" sortBy="#{varMateria.semestre}">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{varMateria.semestre}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varMateria.semestre}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column style="width:32px">
+                        <p:rowEditor />
+                    </p:column>
+                </p:dataTable>
+                <p:spacer/>   
+                <br/>
+                <!--<h:commandButton styleClass="btn btn-info col-md-offset-5"  action="#//{modificarProfesor.cargarProfesores()}" value="Consultar" title="Consultar" />-->
+            </div>
+            <br/>
         </h:form>
     </ui:define>
-
 </ui:composition>

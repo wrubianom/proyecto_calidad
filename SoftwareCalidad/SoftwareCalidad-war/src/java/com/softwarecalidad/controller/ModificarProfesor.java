@@ -57,9 +57,8 @@ public class ModificarProfesor implements Serializable {
 
     public void eliminarProfesor() {
         try {
-            System.out.println("----------- "+profesor.getCodigo());
             profesores.remove(profesor);
-            //profesorEJB.eliminarProfesor(profesor);
+            profesorEJB.eliminarProfesor(profesor);
         } catch (Exception ex) {
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage());
         }
