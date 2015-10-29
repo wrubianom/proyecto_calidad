@@ -49,6 +49,6 @@ public class loginBean implements Serializable {
 
     public String doLogin() {
         this.usuarioEJB.login(this.user, this.pwd);
-        return "home";
+        return "HOME";
     }
 }

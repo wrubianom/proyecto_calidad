@@ -6,8 +6,40 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>home</from-outcome>
+            <from-outcome>HOME</from-outcome>
             <to-view-id>/pages/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/*</from-view-id>
+        <navigation-case>
+            <from-outcome>HOME</from-outcome>
+            <to-view-id>/pages/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ADICIONAR_GRUPO</from-outcome>
+            <to-view-id>/pages/AdicionarGrupo.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ELIMINAR_GRUPO</from-outcome>
+            <to-view-id>/pages/EliminarGrupo.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>ASIGNAR_GRUPO</from-outcome>
+            <to-view-id>/pages/AsignarGrupo.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>CONSULTAR_MATERIAS_PROFESOR</from-outcome>
+            <to-view-id>/pages/ConsultarMateriasProfesor.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
 </faces-config>
