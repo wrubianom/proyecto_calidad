@@ -15,10 +15,10 @@ and open the template in the editor.
 
 .submenuSelect{
     width: 100%;
-    font-size: 20px;
+    font-size: 15px;
     text-align: left;
-    background-color: #ffffff;
+    background-color: transparent;
     font-family: "Times New Roman";
-    color: #6e7373;
+    color: #e1ebec;
     border: 0px !important;	
 }
