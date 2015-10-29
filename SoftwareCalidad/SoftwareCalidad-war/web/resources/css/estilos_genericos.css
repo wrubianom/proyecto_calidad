@@ -12,3 +12,13 @@ and open the template in the editor.
     font-family: "Times New Roman";
     color: black;
 }
+
+.submenuSelect{
+    width: 100%;
+    font-size: 20px;
+    text-align: left;
+    background-color: #ffffff;
+    font-family: "Times New Roman";
+    color: #6e7373;
+    border: 0px !important;	
+}

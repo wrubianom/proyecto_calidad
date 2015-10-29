@@ -23,7 +23,15 @@
                 </div>
             </div>
 
-
+            <h:panelGroup id="panelMensajes">
+                <h:panelGroup rendered="#{adicionarGrupoController.renderizarPanel(adicionarGrupoController.renderError)}">
+                    <p:messages id="msgs02" autoUpdate="true" closable="true"/><br/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adicionarGrupoController.renderizarPanel(adicionarGrupoController.renderOperacionOk)}">
+                    <p:messages id="msgs01" autoUpdate="true" closable="true"/><br/>
+                </h:panelGroup>
+            </h:panelGroup>
+            <br/>
             <div style="margin-left: 20%">
                 <div class="form-horizontal" >
                     <div class="form-group">
@@ -42,7 +50,12 @@
                         <h:outputLabel for="idGrupo" value="Grupo" styleClass="col-lg-2 control-label"></h:outputLabel>
 
                         <div class="col-lg-4">
-                            <h:inputText styleClass="form-control"  pt:placeholder="Grupo" id="idGrupo" value="#{adicionarGrupoController.nuevoGrupo.grupo}" required="true" requiredMessage="Debe ingresar el grupo "></h:inputText>
+                            <h:inputText styleClass="form-control"  
+                                         pt:placeholder="Grupo" 
+                                         id="idGrupo" 
+                                         value="#{adicionarGrupoController.nuevoGrupo.grupo}" 
+                                         required="true" >
+                            </h:inputText>
                         </div>
                         <div class="col-lg-4">
                             <h:message for="idGrupo" styleClass="alert alert-danger"></h:message>
@@ -128,21 +141,12 @@
                                 </div>
                             </h:panelGroup>
                         </div>
-<!--                        <div class="col-lg-4">
-                            <h:messages for="panelHorario" styleClass="alert alert-danger"></h:messages>
-                        </div>-->
+                        <!--                        <div class="col-lg-4">
+                                                    <h:messages for="panelHorario" styleClass="alert alert-danger"></h:messages>
+                                                </div>-->
                     </div>
                 </div>
 
-
-                <h:panelGroup id="panelMensajes">
-                    <h:panelGroup rendered="#{adicionarGrupoController.renderizarPanel(adicionarGrupoController.renderError)}">
-                        <p:messages id="msgs02" autoUpdate="true" closable="true"/><br/>
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{adicionarGrupoController.renderizarPanel(adicionarGrupoController.renderOperacionOk)}">
-                        <p:messages id="msgs01" autoUpdate="true" closable="true"/><br/>
-                    </h:panelGroup>
-                </h:panelGroup>
                 <br/>
 
             </div>

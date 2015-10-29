@@ -1,0 +1,86 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="./../template/templateGeneral.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+
+            <div class="text-center">
+                <div class="jumbotron">
+                    <h1>
+                        <div class="subtitulomodulo">
+                            <i>Consultar materias profesor</i>
+                        </div>
+                    </h1>
+                    <p> Se consultaran los grupos de materias que el profesor tenga asociadas </p>
+                </div>
+            </div>
+            <p:messages id="msgs02" autoUpdate="true" closable="true"/><br/>
+            <div style="margin-left: 20%">
+
+                <div class="form-horizontal" >
+                    <div class="form-group">
+                        <h:outputLabel for="idProfesor" value="Profesor" styleClass="col-lg-2 control-label"></h:outputLabel>
+                        <div class="col-lg-4">
+                            <h:selectOneMenu class="form-control" id="idProfesor" 
+                                             value="#{consultarMateriaProfesorController.idProfesor}" 
+                                             required="true" 
+                                             requiredMessage="Debe seleccionar un profesor de la lista"> 
+                                <f:selectItem itemValue="" itemLabel="Seleccione una opcion" />
+                                <f:selectItems value="#{consultarMateriaProfesorController.listaProfesores}" 
+                                               var="items" 
+                                               itemLabel="#{items.nombre}" 
+                                               itemValue="#{items.idProfesor}"
+                                               ></f:selectItems>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:message for="idProfesor" styleClass="alert alert-danger"></h:message>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <div class="text-center">
+                <p:commandButton value="Consultar" 
+                                 styleClass="btn btn-info" 
+                                 update="panelResultado"
+                                 action="#{consultarMateriaProfesorController.buscarProfesor()}" ></p:commandButton>
+            </div>
+            <br/>
+            <br/>
+
+            <h:panelGroup id="panelResultado">
+                <h:panelGroup rendered="#{consultarMateriaProfesorController.encontroResultado}">
+                    <p:dataTable id="tab-cours" value="#{consultarMateriaProfesorController.listaHorarioProfesor}" var="var">
+                        <p:column headerText="Codigo de la materia">
+                            <h:outputText value="#{var.idHorarioMateria.idMateria.codigo}" />
+                        </p:column>
+                        <p:column headerText="Nombre de la materia">
+                            <h:outputText value="#{var.idHorarioMateria.idMateria.nombre}" />
+                        </p:column>
+                        <p:column headerText="Grupo de la materia">
+                            <h:outputText value="#{var.idHorarioMateria.grupo}" />
+                        </p:column>
+                        <p:column headerText="Jornada del grupo">
+                            <h:outputText value="#{var.idHorarioMateria.nombreJornada}" />
+                        </p:column>
+                        <p:column headerText="Dia de clase">
+                            <h:outputText value="#{var.idHorarioMateria.nombreDia}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+            </h:panelGroup>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

@@ -14,6 +14,9 @@
             <h:outputStylesheet name="estilos_genericos.css" library="css"/>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
             <h:outputScript name="bootstrap/js/bootstrap.js" />
+
+            <h:outputStylesheet name="footer-distributed-with-address-and-phones.css" library="css"/>
+            
         </f:facet>
         <f:facet name="last">
             <h:outputStylesheet name="css/font-awesome.css" />
@@ -37,7 +40,9 @@
                             <!--<a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/home.xhtml">-->
 
                             <div>
-                                <p><h:graphicImage width="150" height="80" value="/resources/img/logo_ucentral_footer.png"/></p></div>
+                                <h:commandButton action="HOME" image="/resources/img/logo_ucentral_footer.png" >
+                                </h:commandButton>
+                            </div>
                             <!--</a>-->
                         </div>
 
@@ -100,17 +105,26 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar carga <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/AdicionarGrupo.xhtml">Adicionar grupo</a>
+                                        <li id="menuu">
+                                            <!--                                            <a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/AdicionarGrupo.xhtml">Adicionar grupo</a>-->
+                                            <h:commandButton styleClass="submenuSelect" value="Adicionar grupo" action="ADICIONAR_GRUPO"></h:commandButton>
                                         </li>
                                         <li role="separator" class="divider"></li>
                                         <li>
-                                            <a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/EliminarGrupo.xhtml">Eliminar grupo</a>
+                                            <!--<a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/EliminarGrupo.xhtml">Eliminar grupo</a>-->
+                                            <h:commandButton styleClass="submenuSelect" value="Eliminar grupo" action="ELIMINAR_GRUPO"></h:commandButton>
                                         </li>
-
+                                        <li role="separator" class="divider"></li>
                                         <li>
-                                            <a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/AsignarGrupo.xhtml">Asignar grupo</a>
+                                            <!--<a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/AsignarGrupo.xhtml">Asignar grupo</a>-->
+                                            <h:commandButton styleClass="submenuSelect" value="Asignar grupo" action="ASIGNAR_GRUPO"></h:commandButton>
                                         </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <!--<a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/AsignarGrupo.xhtml">Asignar grupo</a>-->
+                                            <h:commandButton  styleClass="submenuSelect" value="Consultar materias profesor" action="CONSULTAR_MATERIAS_PROFESOR"></h:commandButton>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
                                     </ul>
 
                                 </li>
@@ -133,17 +147,71 @@
             </div>
         </div>
 
-
+        <br/>
+        <br/>
         <div id="bottom">
-            <footer>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div style="text-align: center">
-                            Footer de la aplicacion
-                        </div>
-                    </div>
+            <footer class="footer-distributed">
+
+                <div class="footer-left">
+
+                    <h3>Company<span>logo</span></h3>
+
+                    <p class="footer-links">
+                        <a href="#">Home</a>
+                        Â·
+                        <a href="#">Blog</a>
+                        Â·
+                        <a href="#">Pricing</a>
+                        Â·
+                        <a href="#">About</a>
+                        Â·
+                        <a href="#">Faq</a>
+                        Â·
+                        <a href="#">Contact</a>
+                    </p>
+
+                    <p class="footer-company-name">Company Name &copy; 2015</p>
                 </div>
+
+                <div class="footer-center">
+
+                    <div>
+                        <i class="fa fa-map-marker"></i>
+                        <p><span>21 Revolution Street</span> Paris, France</p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <p>+1 555 123456</p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <p><a href="mailto:support@company.com">support@company.com</a></p>
+                    </div>
+
+                </div>
+
+                <div class="footer-right">
+
+                    <p class="footer-company-about">
+                        <span>About the company</span>
+                        Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                    </p>
+
+                    <div class="footer-icons">
+
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a href="#"><i class="fa fa-github"></i></a>
+
+                    </div>
+
+                </div>
+
             </footer>
+
         </div>
 
     </h:body>
