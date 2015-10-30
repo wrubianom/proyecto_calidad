@@ -5,9 +5,10 @@
  */
 package com.softwarecalidad.negocio;
 
+import com.softwarecalidad.DAO.AdminDAO;
+import com.softwarecalidad.entidades.Usuario;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,15 +17,12 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UsuarioEJB implements UsuarioEJBLocal {
 
-    @PersistenceContext
-    EntityManager dataAcces;
+    @EJB
+    private AdminDAO adminDAO;
 
     @Override
-    public boolean login(String user, String pass) {
-        return true;
+    public Usuario login(String user, String pass) {
+        return this.adminDAO.getUsserLogin(user, pass);
     }
 
-    
-    
-    
 }

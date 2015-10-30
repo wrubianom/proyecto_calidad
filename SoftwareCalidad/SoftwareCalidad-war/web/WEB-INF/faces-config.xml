@@ -11,7 +11,38 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>HOME</from-outcome>
+            <to-view-id>/pages/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>LOGIN</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/LoginFail.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>HOME</from-outcome>
+            <to-view-id>/pages/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/LoginFail.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>LOGIN_FAIL</from-outcome>
+            <to-view-id>/LoginFail.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
     <navigation-rule>
         <from-view-id>/pages/*</from-view-id>
         <navigation-case>

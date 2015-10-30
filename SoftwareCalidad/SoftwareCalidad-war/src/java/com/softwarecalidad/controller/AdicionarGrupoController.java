@@ -147,7 +147,7 @@ public class AdicionarGrupoController {
             this.iniciarAdicionarGrupo();
         } else {
             this.panelRenderizado = this.renderError;
-            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Ocurrio un error al ingresar el grupo ... No se puede ingresar un horario igual para un mismo grupo");
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "El grupo ingresado ya se encuentra registrado para la materia seleccionada");
         }
     }
 
