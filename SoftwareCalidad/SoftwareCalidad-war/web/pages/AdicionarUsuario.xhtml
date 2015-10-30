@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <h:outputLabel for="idNombre" value="Ingrese el Nombre: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
-                            <h:inputText id="idNombre" value="#{administradorController.admin.nombre}" pt:placeholder="Nombre" title="Nombre" maxlength="10" required="true" validatorMessage="Error Solo Letras" requiredMessage="Error en el Nombre" class="form-control">
+                            <h:inputText id="idNombre" value="#{administradorController.admin.nombre}" pt:placeholder="Nombre" title="Nombre" maxlength="20" required="true" validatorMessage="Error, Solo se Aceptan Letras" requiredMessage="Error en el Nombre" class="form-control">
                                 <f:validateRegex pattern="^[a-zA-Z]+$" />
                             </h:inputText>
                         </div>
@@ -39,10 +39,9 @@
                     <div class="form-group">
                         <h:outputLabel for="idDis" value="Tipo de Usuario: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
-                            <h:selectOneMenu id="idDis" value="#{administradorController.admin.tipo}" title="Tipo de Usuario" class="form-control" required="true" requiredMessage="Debe seleccionar el Tipo de Usuario"> 
-                                <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
-                                <f:selectItem itemLabel="Administrador" itemValue="admin"></f:selectItem>                            
-                                <f:selectItem itemLabel="Usuario" itemValue="user"></f:selectItem>
+                            <h:selectOneMenu id="idDis" value="#{administradorController.admin.tipo}" title="Tipo de Usuario" class="form-control" required="true" requiredMessage="Debe Seleccionar el Tipo de Usuario"> 
+                                <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />                          
+                                <f:selectItem itemLabel="Usuario" itemValue="usuario"></f:selectItem>
                             </h:selectOneMenu>
                         </div>
                         <div class="col-lg-5">
@@ -53,7 +52,7 @@
                         <h:outputLabel for="idClave" value="Ingrese la Clave: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
                             <p:password id="idClave" value="#{administradorController.admin.clave}" feedback="true" pt:placeholder="Clave" title="Clave" maxlength="50" required="true" requiredMessage="Error en la Clave" class="form-control"
-                                        promptLabel="Por favor ingrese la contraseña" weakLabel="Devil"
+                                        promptLabel="Por Favor Digite la Contraseña" weakLabel="Devil"
                                         goodLabel="Medio" strongLabel="Segura" />
                         </div>
                         <div class="col-lg-4">
@@ -63,15 +62,15 @@
                     <div class="form-group">
                         <h:outputLabel for="idConClave" value="Confirme la Clave: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
-                            <p:password id="idConClave" value="#{administradorController.password}" feedback="true" pt:placeholder="Clave" title="Clave" maxlength="50" required="true" requiredMessage="Error al confirmar la Clave" class="form-control"
-                                        promptLabel="Por favor ingrese la contraseña" weakLabel="Devil"
+                            <p:password id="idConClave" value="#{administradorController.password}" feedback="true" pt:placeholder="Clave" title="Clave" maxlength="50" required="true" requiredMessage="Error al Confirmar la Clave" class="form-control"
+                                        promptLabel="Por Favor Digite la Contraseña" weakLabel="Devil"
                                         goodLabel="Medio" strongLabel="Segura" />
                         </div>
                         <div class="col-lg-4">
                             <h:message for="idConClave" styleClass="alert alert-danger"></h:message>
                         </div>
                     </div>
-                    <h:commandButton styleClass="btn btn-info col-md-offset-2" action="#{administradorController.adicionarAdmin()}" value="Adicionar Administrador" title="Adicionar Administrador" />
+                    <h:commandButton styleClass="btn btn-info col-md-offset-2" action="#{administradorController.adicionarAdmin()}" value="Adicionar Usuario" title="Adicionar Usuario" />
                 </div>
             </div>
             <br/>

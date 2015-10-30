@@ -26,10 +26,7 @@
                     </f:facet>
 
                     <p:column headerText="ID" sortBy="#{varAdmin.idUsuario}">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{varAdmin.idUsuario}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varAdmin.idUsuario}" style="width:100%"/></f:facet>
-                        </p:cellEditor> 
+                        <h:outputText value="#{varAdmin.idUsuario}" />
                     </p:column>
                     <p:column headerText="UserName" sortBy="#{varAdmin.login}">
                         <p:cellEditor>
@@ -48,9 +45,8 @@
                             <f:facet name="output"><h:outputText value="#{varAdmin.tipo}" /></f:facet>
                             <f:facet name="input">
                                 <h:selectOneMenu id="idDis" value="#{varAdmin.tipo}" style="width:100%" title="Tipo de Usuario" class="form-control"> 
-                                    <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
-                                    <f:selectItem itemLabel="Administrador" itemValue="admin"></f:selectItem>                            
-                                    <f:selectItem itemLabel="Usuario" itemValue="user"></f:selectItem>
+                                    <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />                        
+                                    <f:selectItem itemLabel="Usuario" itemValue="usuario"></f:selectItem>
                                 </h:selectOneMenu>
                             </f:facet>
                         </p:cellEditor> 

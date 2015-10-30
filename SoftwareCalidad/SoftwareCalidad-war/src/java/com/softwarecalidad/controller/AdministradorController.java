@@ -7,6 +7,7 @@ package com.softwarecalidad.controller;
 
 import com.softwarecalidad.entidades.Usuario;
 import com.softwarecalidad.negocio.AdminEJBLocal;
+import com.softwarecalidad.utilidades.Hash;
 import com.softwarecalidad.utilidades.UtilFaces;
 import com.softwarecalidad.utilidades.Utilidades;
 import javax.ejb.EJB;
@@ -21,17 +22,17 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class AdministradorController {
-
+    
     @EJB
     private AdminEJBLocal adminEJB;
-
+    
     private Usuario admin = new Usuario();
     private Utilidades util = new Utilidades();
     private String password;
-
+    
     public AdministradorController() {
     }
-
+    
     public void adicionarAdmin() {
         try {
             if (util.validateText(admin.getLogin())) {
@@ -40,11 +41,13 @@ public class AdministradorController {
                 UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_FATAL, "Error en el Nombre");
             } else {
                 if (admin.getClave().equals(password)) {
+                    admin.setClave(Hash.encript(password));
                     boolean ban = adminEJB.crearUsuario(admin);
                     if (ban) {
                         UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Administrador ha sido Agregado");
+                        admin = new Usuario();
                     } else {
-                        UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error verifique los datos del administrador");
+                        UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error verifique los datos del usuario");
                     }
                 } else {
                     UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error Las contraseñas no coinciden");
@@ -54,21 +57,21 @@ public class AdministradorController {
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, e.getMessage());
         }
     }
-
+    
     public Usuario getAdmin() {
         return admin;
     }
-
+    
     public void setAdmin(Usuario admin) {
         this.admin = admin;
     }
-
+    
     public String getPassword() {
         return password;
     }
-
+    
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
 }
