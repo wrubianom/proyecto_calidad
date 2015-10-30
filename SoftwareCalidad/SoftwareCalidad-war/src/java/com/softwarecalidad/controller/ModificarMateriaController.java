@@ -6,7 +6,6 @@
 package com.softwarecalidad.controller;
 
 import com.softwarecalidad.entidades.Materia;
-import com.softwarecalidad.entidades.Profesor;
 import com.softwarecalidad.negocio.MateriaEJBLocal;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -59,13 +58,13 @@ public class ModificarMateriaController {
     }
     
     public void onRowEdit(RowEditEvent event) {
-        //materiaEJB.modificarProfesor((Profesor) event.getObject());
-        FacesMessage msg = new FacesMessage("Profesor Actualizado", ((Profesor) event.getObject()).toString());
+        materiaEJB.modificarMateria((Materia) event.getObject());
+        FacesMessage msg = new FacesMessage("Materia Actualizada", ((Materia) event.getObject()).toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Cancelado", ((Profesor) event.getObject()).toString());
+        FacesMessage msg = new FacesMessage("Cancelado", ((Materia) event.getObject()).toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }

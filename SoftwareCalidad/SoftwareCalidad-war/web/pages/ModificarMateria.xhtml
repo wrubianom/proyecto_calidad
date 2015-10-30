@@ -22,7 +22,7 @@
                     <p:ajax event="rowEditCancel" listener="#{modificarMateriaController.onRowCancel}" update=":form-tab-cours-02:msgs01" />
 
                     <f:facet name="header">
-                        Profesores
+                        Materias
                     </f:facet>
 
                     <p:column headerText="Codigo" sortBy="#{varMateria.codigo}">
@@ -41,8 +41,7 @@
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varMateria.tipo == 'T' ? 'Teórica':'Práctica'}" /></f:facet>
                             <f:facet name="input">
-                                <h:selectOneMenu id="idTipo" style="width:100%">
-                                    <f:selectItem itemValue="null" itemLabel="Seleccione una Opcion" />
+                                <h:selectOneMenu id="idTipo" value="#{varMateria.tipo}" style="width:100%" title="Tipo de Materia" class="form-control" requiredMessage="Debe seleccionar el tipo de materia">
                                     <f:selectItem itemLabel="Teórica" itemValue="T"></f:selectItem>
                                     <f:selectItem itemLabel="Práctica" itemValue="P "></f:selectItem>
                                 </h:selectOneMenu>

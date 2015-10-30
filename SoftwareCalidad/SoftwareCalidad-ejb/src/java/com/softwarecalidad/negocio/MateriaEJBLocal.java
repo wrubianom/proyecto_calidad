@@ -19,5 +19,6 @@ public interface MateriaEJBLocal {
 
     public ResultadoOperation adicionarMateria(Materia nuevaMateria);
     public ResultadoOperation eliminarMateria(int idMateria);
+    public ResultadoOperation modificarMateria(Materia materia);
     public List<Materia> getAllMaterias();
 }

@@ -72,5 +72,67 @@
             <to-view-id>/pages/ConsultarMateriasProfesor.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>ADICIONAR_PROFESOR</from-outcome>
+            <to-view-id>/pages/AdicionarProfesor.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>CONSULTAR_PROFESOR</from-outcome>
+            <to-view-id>/pages/ConsultarProfesor.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>MODIFICAR_PROFESOR</from-outcome>
+            <to-view-id>/pages/ModificarProfesor.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ELIMINAR_PROFESOR</from-outcome>
+            <to-view-id>/pages/EliminarProfesor.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>ADICIONAR_USUARIO</from-outcome>
+            <to-view-id>/pages/AdicionarUsuario.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>CONSULTAR_USUARIO</from-outcome>
+            <to-view-id>/pages/ConsultarUsuario.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>MODIFICAR_USUARIO</from-outcome>
+            <to-view-id>/pages/ModificarUsuario.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ELIMINAR_USUARIO</from-outcome>
+            <to-view-id>/pages/EliminarUsuario.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ADICIONAR_MATERIA</from-outcome>
+            <to-view-id>/pages/adicionarMateria.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ELIMINAR_MATERIA</from-outcome>
+            <to-view-id>/pages/EliminarMateriaF.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>MODIFICAR_MATERIA</from-outcome>
+            <to-view-id>/pages/ModificarMateria.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>CONSULTAR_MATERIA</from-outcome>
+            <to-view-id>/pages/ConsultarMateria.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
