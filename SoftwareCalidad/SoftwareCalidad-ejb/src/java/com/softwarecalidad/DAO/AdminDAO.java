@@ -54,9 +54,23 @@ public class AdminDAO extends AbstractFacade<Usuario> {
             query.setParameter("idProfesorInt", 1);
             resultado = query.getResultList();
         } catch (Exception e) {
-            System.out.println("Error capa persistencia getListaProfesores");
+            System.out.println("Error capa persistencia getListaProfesores " + e.toString());
         }
         return resultado;
     }
 
+    public Usuario getUsserLogin(String nomUser, String pass) {
+        Usuario user = null;
+        try {
+
+            Query quey = this.em.createNamedQuery("Usuario.findByUserLogin");
+            quey.setParameter("login", nomUser.toUpperCase());
+            quey.setParameter("passC", pass);
+            user = (Usuario) quey.getSingleResult();
+
+        } catch (Exception e) {
+            System.out.println("Error a la consulta de user login " + e.toString());
+        }
+        return user;
+    }
 }

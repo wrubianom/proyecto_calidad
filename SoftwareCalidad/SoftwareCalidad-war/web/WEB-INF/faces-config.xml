@@ -11,7 +11,38 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>HOME</from-outcome>
+            <to-view-id>/pages/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>LOGIN</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/LoginFail.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>HOME</from-outcome>
+            <to-view-id>/pages/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/LoginFail.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>LOGIN_FAIL</from-outcome>
+            <to-view-id>/LoginFail.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
     <navigation-rule>
         <from-view-id>/pages/*</from-view-id>
         <navigation-case>
@@ -81,6 +112,26 @@
         <navigation-case>
             <from-outcome>ELIMINAR_USUARIO</from-outcome>
             <to-view-id>/pages/EliminarUsuario.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ADICIONAR_MATERIA</from-outcome>
+            <to-view-id>/pages/adicionarMateria.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ELIMINAR_MATERIA</from-outcome>
+            <to-view-id>/pages/EliminarMateriaF.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>MODIFICAR_MATERIA</from-outcome>
+            <to-view-id>/pages/ModificarMateria.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>CONSULTAR_MATERIA</from-outcome>
+            <to-view-id>/pages/ConsultarMateria.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
