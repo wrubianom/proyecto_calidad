@@ -16,7 +16,7 @@
             <h:outputScript name="bootstrap/js/bootstrap.js" />
 
             <h:outputStylesheet name="footer-distributed-with-address-and-phones.css" library="css"/>
-            
+
         </f:facet>
         <f:facet name="last">
             <h:outputStylesheet name="css/font-awesome.css" />
@@ -53,18 +53,22 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Profesores<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/AdicionarProfesor.xhtml">Adicionar</a>
-                                        </li>                                        
-                                        <li>
-                                            <a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/ModificarProfesor.xhtml">Modificar</a>
+                                        <li id="menuu">
+                                            <h:commandButton styleClass="submenuSelect" value="Adicionar Profesor" action="ADICIONAR_PROFESOR"></h:commandButton>
                                         </li>
+                                        <li role="separator" class="divider"></li>
                                         <li>
-                                            <a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/ConsultarProfesor.xhtml">Consultar</a>
+                                            <h:commandButton styleClass="submenuSelect" value="Consultar Profesor" action="CONSULTAR_PROFESOR"></h:commandButton>
                                         </li>
+                                        <li role="separator" class="divider"></li>
                                         <li>
-                                            <a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/EliminarProfesor.xhtml">Eliminar</a>
+                                            <h:commandButton styleClass="submenuSelect" value="Modificar Profesor" action="MODIFICAR_PROFESOR"></h:commandButton>
                                         </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <h:commandButton  styleClass="submenuSelect" value="Eliminar Profesor" action="ELIMINAR_PROFESOR"></h:commandButton>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -93,8 +97,20 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administradores<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
+                                        <li id="menuu">
+                                            <h:commandButton styleClass="submenuSelect" value="Adicionar Usuario" action="ADICIONAR_USUARIO"></h:commandButton>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
                                         <li>
-                                            <a class="navbar-brand" href="/SoftwareCalidad-war/faces/pages/AdicionarAdministrador.xhtml">Adicionar</a>
+                                            <h:commandButton styleClass="submenuSelect" value="Consultar Usuario" action="CONSULTAR_USUARIO"></h:commandButton>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <h:commandButton styleClass="submenuSelect" value="Modificar Usuario" action="MODIFICAR_USUARIO"></h:commandButton>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <h:commandButton  styleClass="submenuSelect" value="Eliminar Usuario" action="ELIMINAR_USUARIO"></h:commandButton>
                                         </li>
                                         <li role="separator" class="divider"></li>
                                     </ul>
