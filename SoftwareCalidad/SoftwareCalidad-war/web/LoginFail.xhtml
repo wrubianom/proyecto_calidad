@@ -22,7 +22,7 @@
     </h:head>
     <h:body>
         <!--login modal-->
-        <p:messages id="msgs01" autoUpdate="true" closable="true"/><br/>
+
         <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -65,7 +65,12 @@
                         </div>	
                     </div>
                 </div>
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong style="font-size: 30px">Error al autenticar!</strong> <div style="font-size: 20px;">Ingrese nuevamente sus credenciales.</div>
+                </div>
             </div>
+
         </div>
         <!-- script references -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

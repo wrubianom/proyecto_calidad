@@ -5,6 +5,7 @@
  */
 package com.softwarecalidad.negocio;
 
+import com.softwarecalidad.entidades.Usuario;
 import javax.ejb.Local;
 
 /**
@@ -14,5 +15,5 @@ import javax.ejb.Local;
 @Local
 public interface UsuarioEJBLocal {
 
-    public boolean login(String user, String pass);
+    public Usuario login(String user, String pass);
 }
