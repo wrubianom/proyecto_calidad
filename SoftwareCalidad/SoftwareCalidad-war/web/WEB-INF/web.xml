@@ -27,4 +27,10 @@
         <local>com.softwarecalidad.negocio.MateriaEJBLocal</local>
         <ejb-link>SoftwareCalidad-ejb.jar#MateriaEJB</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>UsuarioEJB</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>com.softwarecalidad.negocio.UsuarioEJBLocal</local>
+        <ejb-link>SoftwareCalidad-ejb.jar#UsuarioEJB</ejb-link>
+    </ejb-local-ref>
 </web-app>

@@ -25,21 +25,24 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        LoginBean usuario = (LoginBean) ((HttpServletRequest) request).getSession().getAttribute("usuarioBean");
+        UsuarioBean usuario = (UsuarioBean) ((HttpServletRequest) request).getSession().getAttribute("usuarioBean");
         String path = ((HttpServletRequest) request).getRequestURI().substring(((HttpServletRequest) request).getContextPath().length());
         if ((usuario == null && path != null && path.length() == 1)) {
-            ((HttpServletResponse) response).sendRedirect("/Aprov_Dominios/faces/pages/publicas/login.xhtml");
+            System.out.println("lllllllllllllllll");
+            ((HttpServletResponse) response).sendRedirect("/SoftwareCalidad-war/faces/pages/index.xhtml");
         } else {
-            if (path.startsWith("/admin/") && (usuario.getCurrentUsuario() != null && usuario.getCurrentUsuario().getTipo().equals("U"))) {
+            if (path.startsWith("/pages/") && usuario.getUsuario() != null) {
+                System.out.println("iiiiiiiiiiiii");
                 chain.doFilter(request, response);
-            } else if (path.startsWith("/faces/pages/publicas/")) {
+            } else if (path.startsWith("/faces/pages/")) {
                 chain.doFilter(request, response);
             } else if (path.length() == 1 && usuario != null) {
                 chain.doFilter(request, response);
             } else if (path.contains("javax.faces.resource")) {
                 chain.doFilter(request, response);
             } else {
-                ((HttpServletResponse) response).sendRedirect("/Aprov_Dominios/faces/pages/publicas/unauthorized.xhtml");
+                 System.out.println("kkkkkkkkkkk");
+                ((HttpServletResponse) response).sendRedirect("/SoftwareCalidad-war/faces/pages/AdicionarProfesor.xhtml");
             }
         }
     }

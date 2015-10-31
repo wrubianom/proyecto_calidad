@@ -35,7 +35,7 @@
                             <div class="form-group">
 
                                 <h:outputText value="Username" styleClass="sr-only"/>
-                                <h:inputText id="username" value="#{usuarioBean.user}" 
+                                <h:inputText id="username" value="#{loginBean.user}" 
                                              styleClass="form-control input-lg" 
                                              required="true"
                                              requiredMessage="Debe ingresar el nombre de usuario"></h:inputText>
@@ -45,7 +45,7 @@
 
                                 <h:outputText value="Password" styleClass="sr-only" />
                                 <h:inputSecret id="password" 
-                                               value="#{usuarioBean.password}" 
+                                               value="#{loginBean.pwd}" 
                                                styleClass="form-control input-lg"
                                                required="true"
                                                requiredMessage="Debe ingresar el password"></h:inputSecret>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group">
 
-                                <h:commandButton action="#{usuarioBean.login}"
+                                <h:commandButton action="#{loginBean.doLogin()}"
                                                  value="Sign In" styleClass="btn btn-primary btn-lg btn-block"></h:commandButton>
                                 <!--<span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>-->
                             </div>
