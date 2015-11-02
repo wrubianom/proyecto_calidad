@@ -32,7 +32,7 @@ public class LoginFilter implements Filter {
         String contextPath = ((HttpServletRequest) request).getContextPath();
         String urlReques = contextPath + "/faces/index.xhtml";
 
-        if (userManager != null && userManager.isLogged() && userManager.getCurrentUsuario() != null) {
+        if (userManager != null && userManager.isLoged() && userManager.getCurrentUsuario() != null) {
             chain.doFilter(request, response);
             return;
         }
@@ -45,7 +45,7 @@ public class LoginFilter implements Filter {
             response.sendRedirect(urlReques);
             return;
         }
-        
+
         chain.doFilter(request, response);
     }
 
