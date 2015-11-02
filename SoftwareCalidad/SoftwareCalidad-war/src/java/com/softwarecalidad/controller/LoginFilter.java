@@ -20,28 +20,33 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Sebastian Vega
  */
-@WebFilter(filterName = "filter", urlPatterns = "/*")
+@WebFilter(filterName = "LoginFilter", urlPatterns = "/*")
 public class LoginFilter implements Filter {
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        LoginBean usuario = (LoginBean) ((HttpServletRequest) request).getSession().getAttribute("usuarioBean");
-        String path = ((HttpServletRequest) request).getRequestURI().substring(((HttpServletRequest) request).getContextPath().length());
-        if ((usuario == null && path != null && path.length() == 1)) {
-            ((HttpServletResponse) response).sendRedirect("/Aprov_Dominios/faces/pages/publicas/login.xhtml");
-        } else {
-            if (path.startsWith("/admin/") && (usuario.getCurrentUsuario() != null && usuario.getCurrentUsuario().getTipo().equals("U"))) {
-                chain.doFilter(request, response);
-            } else if (path.startsWith("/faces/pages/publicas/")) {
-                chain.doFilter(request, response);
-            } else if (path.length() == 1 && usuario != null) {
-                chain.doFilter(request, response);
-            } else if (path.contains("javax.faces.resource")) {
-                chain.doFilter(request, response);
-            } else {
-                ((HttpServletResponse) response).sendRedirect("/Aprov_Dominios/faces/pages/publicas/unauthorized.xhtml");
-            }
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) res;
+        LoginBean userManager = (LoginBean) ((HttpServletRequest) request).getSession().getAttribute("loginBean");
+
+        String contextPath = ((HttpServletRequest) request).getContextPath();
+        String urlReques = contextPath + "/faces/index.xhtml";
+
+        if (userManager != null && userManager.isLogged() && userManager.getCurrentUsuario() != null) {
+            chain.doFilter(request, response);
+            return;
         }
+        String pathURI = request.getRequestURI();
+        if (pathURI.contains("javax.faces.resource")) {
+            chain.doFilter(request, response);
+            return;
+        }
+        if (!request.getRequestURI().equals(urlReques)) {
+            response.sendRedirect(urlReques);
+            return;
+        }
+        
+        chain.doFilter(request, response);
     }
 
     @Override
