@@ -33,7 +33,7 @@ public class MateriaEJB implements MateriaEJBLocal {
                 resultado.setMensaje("La materia con el id " + nuevaMateria.getCodigo() + " ya se encuentra registrada");
             } else {
                 this.materiaDAO.create(nuevaMateria);
-                resultado.setMensaje("La materia con el id " + nuevaMateria.getCodigo() + " fue creada correctamente");
+                resultado.setMensaje("La materia fue creada correctamente");
             }
         } catch(Exception e){
             resultado.setResultado(false);
