@@ -51,6 +51,7 @@ public class AdicionarMateriaController {
         ResultadoOperation resultado = this.materiaEJB.adicionarMateria(nuevaMateria);
         if(resultado.isOk()){
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, resultado.getMensaje());
+            nuevaMateria = new Materia();
         } else {
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, resultado.getMensaje());
         }

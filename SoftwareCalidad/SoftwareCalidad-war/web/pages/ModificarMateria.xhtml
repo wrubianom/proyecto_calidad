@@ -26,15 +26,16 @@
                     </f:facet>
 
                     <p:column headerText="Codigo" sortBy="#{varMateria.codigo}">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{varMateria.codigo}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varMateria.codigo}" style="width:100%"/></f:facet>
-                        </p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{varMateria.codigo}" /></f:facet>
                     </p:column>
                     <p:column headerText="Nombre" sortBy="#{varMateria.nombre}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varMateria.nombre}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varMateria.nombre}" style="width:100%"/></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{varMateria.nombre}" style="width:100%" validatorMessage="Error, Solo se Aceptan Letras en el nombre">
+                                    <f:validateRegex pattern="^[a-zA-Z ñáéíóú]+$" />
+                                </p:inputText>
+                            </f:facet>
                         </p:cellEditor>
                     </p:column>
                     <p:column headerText="Tipo" sortBy="#{varMateria.tipo}">
@@ -51,19 +52,31 @@
                     <p:column headerText="Créditos" sortBy="#{varMateria.creditos}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varMateria.creditos}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varMateria.creditos}" style="width:100%"/></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{varMateria.creditos}" style="width:100%" validatorMessage="Error, Solo se Aceptan Digitos en los créditos">
+                                    <f:validateDoubleRange minimum="1" maximum="9" />
+                                </p:inputText>
+                            </f:facet>
                         </p:cellEditor>
                     </p:column>
                     <p:column headerText="Intensidad Horaria" sortBy="#{varMateria.ih}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varMateria.ih}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varMateria.ih}" style="width:100%"/></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{varMateria.ih}" style="width:100%" validatorMessage="Error, Solo se Aceptan Digitos en la intensidad horaria">
+                                    <f:validateDoubleRange minimum="1" maximum="9" />
+                                </p:inputText>
+                            </f:facet>
                         </p:cellEditor>
                     </p:column>
                     <p:column headerText="Semestre" sortBy="#{varMateria.semestre}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varMateria.semestre}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varMateria.semestre}" style="width:100%"/></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{varMateria.semestre}" style="width:100%" validatorMessage="Error, Solo se Aceptan Digitos en el semestre">
+                                    <f:validateDoubleRange minimum="1" maximum="9" />
+                                </p:inputText>
+                            </f:facet>
                         </p:cellEditor>
                     </p:column>
                     <p:column style="width:32px">
