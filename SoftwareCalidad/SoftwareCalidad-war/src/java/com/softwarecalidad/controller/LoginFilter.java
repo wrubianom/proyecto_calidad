@@ -20,34 +20,33 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Sebastian Vega
  */
-@WebFilter(filterName = "filter", urlPatterns = "/*")
+@WebFilter(filterName = "LoginFilter", urlPatterns = "/*")
 public class LoginFilter implements Filter {
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        UsuarioBean usuario = (UsuarioBean) ((HttpServletRequest) request).getSession().getAttribute("usuarioBean");
-        String path = ((HttpServletRequest) request).getRequestURI().substring(((HttpServletRequest) request).getContextPath().length());
-        if ((usuario == null && path != null && path.length() == 1)) {
-            System.out.println("lllllllllllllllll");
-            ((HttpServletResponse) response).sendRedirect("/SoftwareCalidad-war/faces/pages/index.xhtml");
-        } else {
-            if (path.startsWith("/pages/") && usuario.getUsuario() != null) {
-                System.out.println("--------- "+usuario.getUsuario().getNombre());
-                chain.doFilter(request, response);
-            } else if (path.startsWith("/faces/pages/")) {
-                System.out.println("ppppppppppppppppp");
-                chain.doFilter(request, response);
-            } else if (path.length() == 1 && usuario != null) {
-                System.out.println("qwwwwwwwwwwwwwww");
-                chain.doFilter(request, response);
-            } else if (path.contains("javax.faces.resource")) {
-                System.out.println("hhhhhhhhhhhhhhhhhhhhhhhh");
-                chain.doFilter(request, response);
-            } else {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa");
-                ((HttpServletResponse) response).sendRedirect("/SoftwareCalidad-war/faces/pages/unauthorized.xhtml");
-            }
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) res;
+        LoginBean userManager = (LoginBean) ((HttpServletRequest) request).getSession().getAttribute("loginBean");
+
+        String contextPath = ((HttpServletRequest) request).getContextPath();
+        String urlReques = contextPath + "/faces/index.xhtml";
+
+        if (userManager != null && userManager.isLoged() && userManager.getCurrentUsuario() != null) {
+            chain.doFilter(request, response);
+            return;
         }
+        String pathURI = request.getRequestURI();
+        if (pathURI.contains("javax.faces.resource")) {
+            chain.doFilter(request, response);
+            return;
+        }
+        if (!request.getRequestURI().equals(urlReques)) {
+            response.sendRedirect(urlReques);
+            return;
+        }
+
+        chain.doFilter(request, response);
     }
 
     @Override
