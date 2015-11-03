@@ -49,6 +49,7 @@ public class AdicionarProfesor implements Serializable {
                 boolean ban = profesorEJB.crearProfesor(nuevoProfesor);
                 if (ban) {
                     UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Profesor ha sido Agregado");
+                    nuevoProfesor = new Profesor();
                 } else {
                     UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error verifique los datos del profesor");
                 }

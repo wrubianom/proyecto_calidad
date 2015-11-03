@@ -32,17 +32,20 @@ public class LoginFilter implements Filter {
             ((HttpServletResponse) response).sendRedirect("/SoftwareCalidad-war/faces/pages/index.xhtml");
         } else {
             if (path.startsWith("/pages/") && usuario.getUsuario() != null) {
-                System.out.println("iiiiiiiiiiiii");
+                System.out.println("--------- "+usuario.getUsuario().getNombre());
                 chain.doFilter(request, response);
             } else if (path.startsWith("/faces/pages/")) {
+                System.out.println("ppppppppppppppppp");
                 chain.doFilter(request, response);
             } else if (path.length() == 1 && usuario != null) {
+                System.out.println("qwwwwwwwwwwwwwww");
                 chain.doFilter(request, response);
             } else if (path.contains("javax.faces.resource")) {
+                System.out.println("hhhhhhhhhhhhhhhhhhhhhhhh");
                 chain.doFilter(request, response);
             } else {
-                 System.out.println("kkkkkkkkkkk");
-                ((HttpServletResponse) response).sendRedirect("/SoftwareCalidad-war/faces/pages/AdicionarProfesor.xhtml");
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa");
+                ((HttpServletResponse) response).sendRedirect("/SoftwareCalidad-war/faces/pages/unauthorized.xhtml");
             }
         }
     }
@@ -57,38 +60,3 @@ public class LoginFilter implements Filter {
 
     }
 }
-
-/*@WebFilter(filterName = "filter", urlPatterns = "/faces/pages/privadas/*")
- public class LoginFilter implements Filter {
-
- @Override
- public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
- UsuarioBean usuario = (UsuarioBean) ((HttpServletRequest) request).getSession().getAttribute("usuarioBean");
- if (usuario.getUsuario() == null && !usuario.isIsLoggin()) {
- //String contextPath = ((HttpServletRequest) request).getContextPath();
- ((HttpServletResponse) response).sendRedirect("/Aprov_Dominios/faces/pages/publicas/login.xhtml");
- } else {
- String path = ((HttpServletRequest) request).getRequestURI().substring(((HttpServletRequest) request).getContextPath().length());
- if (path.startsWith("/faces/pages/privadas/administrador/") && (usuario.getUsuario().getIdPerfil().getId() == 1 || usuario.getUsuario().getIdPerfil().getId() == 2)) {
- chain.doFilter(request, response);
- } else if (path.startsWith("/faces/pages/privadas/registro/") && usuario.getUsuario().getIdPerfil().getId() == 3) {
- chain.doFilter(request, response);
- } else if (path.startsWith("/faces/pages/privadas/consulta/") && usuario.getUsuario().getIdPerfil().getId() == 4) {
- chain.doFilter(request, response);
- } else if (path.startsWith("/faces/pages/publicas/")) {
- chain.doFilter(request, response);
- } else {
- ((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED);
- }
- }
- }
-
- @Override
- public void init(FilterConfig filterConfig) throws ServletException {
-
- }
-
- @Override
- public void destroy() {
-
- }*/

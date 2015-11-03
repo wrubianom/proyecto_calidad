@@ -6,7 +6,11 @@
 package com.softwarecalidad.controller;
 
 import com.softwarecalidad.entidades.Usuario;
+import com.softwarecalidad.negocio.UsuarioEJBLocal;
 import com.softwarecalidad.utilidades.Hash;
+import com.softwarecalidad.utilidades.UtilFaces;
+import com.softwarecalidad.utilidades.Utilidades;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -15,28 +19,29 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  *
- * @author Personal
+ * @author Sebastian Vega
  */
 @ManagedBean
 @RequestScoped
 public class UsuarioBean {
 
-    public static final String INJECTION_NAME = "#{usuarioBean}";
-    private static final long serialVersionUID = 1L;
+    @EJB
+    private UsuarioEJBLocal usuarioEJB;
+
+    private Utilidades util = new Utilidades();
+    //public static final String INJECTION_NAME = "#{usuarioBean}";
+    //private static final long serialVersionUID = 1L;
     private Usuario usuario;
     private boolean isLoggin = false;
     private String user;
     private String password;
-    private String passold;
-    private String passnew;
-    private String passconfirm;
+    //private String passold;
+    //private String passnew;
+    //private String passconfirm;
     private String path;
     private Usuario selectedUsuario;
 //    private Perfil selectedPerfil;
 
-    /**
-     * Creates a new instance of UsuarioBean
-     */
     public UsuarioBean() {
     }
 
@@ -76,30 +81,30 @@ public class UsuarioBean {
         this.password = password;
     }
 
-    public String getPassold() {
-        return passold;
-    }
+    /*    public String getPassold() {
+     return passold;
+     }
 
-    public void setPassold(String passold) {
-        this.passold = passold;
-    }
+     public void setPassold(String passold) {
+     this.passold = passold;
+     }
 
-    public String getPassnew() {
-        return passnew;
-    }
+     public String getPassnew() {
+     return passnew;
+     }
 
-    public void setPassnew(String passnew) {
-        this.passnew = passnew;
-    }
+     public void setPassnew(String passnew) {
+     this.passnew = passnew;
+     }
 
-    public String getPassconfirm() {
-        return passconfirm;
-    }
+     public String getPassconfirm() {
+     return passconfirm;
+     }
 
-    public void setPassconfirm(String passconfirm) {
-        this.passconfirm = passconfirm;
-    }
-
+     public void setPassconfirm(String passconfirm) {
+     this.passconfirm = passconfirm;
+     }
+     */
     public String getPath() {
         return path;
     }
@@ -125,34 +130,57 @@ public class UsuarioBean {
      }*/
     public String redirect() {
         usuario = null;
-        return "/pages/home.xhtml?faces-redirect=true";
+        return "/pages/index.xhtml?faces-redirect=true";
     }
 
     public String login() {
+        try {
+            if (util.validateText(user)) {
+                UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_FATAL, "Error en el User");
+            } else if (util.validateText(password)) {
+                UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_FATAL, "Error en el Password");
+            } else {
+                usuario = this.usuarioEJB.login(user, Hash.encript(password));
+                if (usuario != null) {
+                    this.setIsLoggin(true);
+                    UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "Bienvenido");
+                    user = "";
+                    password = "";
+                    path = "/pages/";
+                    return path + "home.xhtml?faces-redirect=true";
+                } else {
+                    this.setIsLoggin(false);
+                    UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_FATAL, "El usuario no existe o la contraseña es incorrecta");
+                    return null;
+                }
+            }
+        } catch (Exception e) {
+            this.setIsLoggin(false);
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, e.getMessage());
+        }
         //UsuarioFacade usuarioFacade = new UsuarioFacade();
         //usuario = usuarioFacade.findUsuarioByLogin(user, password);
-        //usuario = this.usuarioEJB.login(user, password);
-        //if (usuario != null) {
-            /*if (usuario.getEstado().equals('I')) {
-             addMessage(FacesMessage.SEVERITY_ERROR, "Usuario Inactivo, por favor comuniquese con el administrador", null);
-             return null;
-             }*/
-          //  this.setIsLoggin(true);
-            //if (usuario.getIdPerfil().getId() == 2 || usuario.getIdPerfil().getId() == 1) {
-            path = "/pages/";
-            return path + "home.xhtml?faces-redirect=true";
-            /*} else if (usuario.getIdPerfil().getId() == 3) {
-             path = "/pages/privadas/registro/";
-             return path + "solicitudes.xhtml?faces-redirect=true";
-             } else if (usuario.getIdPerfil().getId() == 4) {
-             path = "/pages/privadas/consulta/";
-             return path + "solicitudes.xhtml?faces-redirect=true";
-             }*/
+
+        /* if (usuario.getEstado().equals('I')) {
+         addMessage(FacesMessage.SEVERITY_ERROR, "Usuario Inactivo, por favor comuniquese con el administrador", null);
+         return null;
+         }*/
+        //  this.setIsLoggin(true);
+        //if (usuario.getIdPerfil().getId() == 2 || usuario.getIdPerfil().getId() == 1) {
+
+        /*} else if (usuario.getIdPerfil().getId() == 3) {
+         path = "/pages/privadas/registro/";
+         return path + "solicitudes.xhtml?faces-redirect=true";
+         } else if (usuario.getIdPerfil().getId() == 4) {
+         path = "/pages/privadas/consulta/";
+         return path + "solicitudes.xhtml?faces-redirect=true";
+         }*/
         /*} else {
-            addMessage(FacesMessage.SEVERITY_ERROR, "Credenciales no validas o Usuario no Existe", null);
-            this.setIsLoggin(false);
-        }
-        return null;*/
+         addMessage(FacesMessage.SEVERITY_ERROR, "Credenciales no validas o Usuario no Existe", null);
+         this.setIsLoggin(false);
+         }
+         return null;*/
+        return null;
     }
 
     public String actualizar() {
@@ -168,7 +196,7 @@ public class UsuarioBean {
         req.getSession().invalidate();
         FacesContext.getCurrentInstance().getViewRoot().getViewMap().remove("usuarioBean");
         this.setIsLoggin(false);
-        return "/pages/LoginFail.xhtml?faces-redirect=true";
+        return "/pages/index.xhtml?faces-redirect=true";
     }
 
     public void addMessage(FacesMessage.Severity type, String summary, String detail) {

@@ -4,47 +4,83 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                template="./../template/templateGeneral.xhtml">
+                template="./../template/templateGeneral.xhtml"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
-        <div class="jumbotron">
-            <h1>
-                <div class="subtitulomodulo">
-                    <i>Asignación Logistica Universitaria</i>
-                </div>
-            </h1>
-            <p>Analisis, Diseño e Implementación de un Sistema Informatico para el Apoyo al Proceso de Asignación de la Carga Academica Usando Programación con Restricciones</p>
-        </div>
+        <h:form id="form">
+            <div class="jumbotron">
+                <h1>
+                    <div class="subtitulomodulo">
+                        <i>Asignación Logistica Universitaria</i>
+                    </div>
+                </h1>
+                <p>Analisis, Diseño e Implementación de un Sistema Informatico para el Apoyo al Proceso de Asignación de la Carga Academica Usando Programación con Restricciones</p>
+            </div>
 
+            <div style="text-align: center">
+                <p:dialog header="Informacion Personal" widgetVar="personDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="320">
+                    <p:outputPanel id="personDetail" style="text-align:center;" layout="block">
+                        <p:panelGrid  columns="2" rendered="#{not empty homeController.persona}" columnClasses="value">
+                            <f:facet name="header">
+                                Detalles
+                            </f:facet>
 
-        <section class="content">
-            <div class="row">
-                <div class="col-md-6" style="margin-left: 20%">
-                    <!-- AREA CHART -->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title text-center" >Registro de materias segundo semestre en el año 2015</h3>
-                            <div class="box-tools pull-right">
-<!--                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            <h:outputText value="Nombre:" />
+                            <h:outputText value="#{homeController.persona.nombre}" />
+
+                            <h:outputText value="Rol" />
+                            <h:outputText value="#{homeController.persona.rol}" />
+
+                            <h:outputText value="Materia: " />
+                            <h:outputText value="#{homeController.persona.materia}" />
+
+                            <h:outputText value="Fecha:" />
+                            <h:outputText value="#{homeController.persona.fecha}" />
+
+                            <h:outputText value="Universidad:" />
+                            <h:outputText value="#{homeController.persona.universidad}" />
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
+            </div>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6" style="margin-left: 20%">
+                        <!-- AREA CHART -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title text-center" >Registro de materias segundo semestre en el año 2015</h3>
+                                <div class="box-tools pull-right">
+                                    <!--                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                </div>
                             </div>
-                        </div>
-                        <div class="box-body">
-                            <div class="chart" style="width: 100%">
-                                <canvas id="areaChart" ></canvas>
-                            </div>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div><!-- /.col (RIGHT) -->
-            </div><!-- /.row -->
-        </section><!-- /.content -->
+                            <div class="box-body">
+                                <div class="chart" style="width: 100%">
+                                    <canvas id="areaChart" ></canvas>
+                                </div>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                        <p:ring id="basic" value="#{homeController.personas}" var="person">
+                            <p:outputPanel style="text-align: center;" layout="block">
+                                #{person.nombre}
+                                <br/>
+                                <p:commandButton update=":form:personDetail" icon="ui-icon-search" title="View" oncomplete="PF('personDialog').show();">
+                                    <f:setPropertyActionListener value="#{person}" target="#{homeController.persona}" />
+                                </p:commandButton>
+                            </p:outputPanel>
+                        </p:ring>
+                    </div><!-- /.col (RIGHT) -->
+                </div><!-- /.row -->
+            </section><!-- /.content -->
+        </h:form>
 
-
-        
         <h:outputScript name="../resources/plugins/jQuery/jQuery-2.1.4.min.js"></h:outputScript>
         <script src="../resources/plugins/chartjs/Chart.min.js"></script>
-        
-        
+
+
         <script>
             $(function () {
                 /* ChartJS
@@ -119,7 +155,7 @@
                     //Boolean - Whether to fill the dataset with a color
                     datasetFill: true,
                     //String - A legend template
-                    
+
                     //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
                     maintainAspectRatio: true,
                     //Boolean - whether to make the chart responsive to window resizing

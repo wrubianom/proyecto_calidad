@@ -44,7 +44,7 @@ public class AdministradorController {
                     admin.setClave(Hash.encript(password));
                     boolean ban = adminEJB.crearUsuario(admin);
                     if (ban) {
-                        UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Administrador ha sido Agregado");
+                        UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Usuario ha sido Agregado");
                         admin = new Usuario();
                     } else {
                         UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error verifique los datos del usuario");
