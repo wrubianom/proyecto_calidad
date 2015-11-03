@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <h:outputLabel value="Código: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
-                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.codigo}" maxlength="50" pt:placeholder="Código" required="true" requiredMessage="Error en el Codigo" validatorMessage="Error, Solo se Aceptan Letras y números" class="form-control">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.codigo}" maxlength="50" pt:placeholder="Código" required="true" requiredMessage="Error en el Codigo" validatorMessage="Error, Solo se Aceptan Letras y números en el código" class="form-control">
                                 <f:validateRegex pattern="^[a-zA-Z1-9 ñáéíóú]+$" />
                             </h:inputText>
                         </div>
@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <h:outputLabel value="Nombre: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
-                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.nombre}" maxlength="50" pt:placeholder="Nombre" required="true" requiredMessage="Error en el Nombre" validatorMessage="Error, Solo se Aceptan Letras" class="form-control">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.nombre}" maxlength="50" pt:placeholder="Nombre" required="true" requiredMessage="Error en el Nombre" validatorMessage="Error, Solo se Aceptan Letras en el nombre" class="form-control">
                                 <f:validateRegex pattern="^[a-zA-Z ñáéíóú]+$" />
                             </h:inputText>
                         </div>
@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <h:outputLabel value="Créditos: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
-                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.creditos}" pt:placeholder="Créditos" required="true" maxlength="1" requiredMessage="Error en los créditos" validatorMessage="Error, Solo se Aceptan Digitos" class="form-control">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.creditos}" pt:placeholder="Créditos" required="true" maxlength="1" requiredMessage="Error en los créditos" validatorMessage="Error, Solo se Aceptan Digitos en los créditos" class="form-control">
                                 <f:validateDoubleRange minimum="1" maximum="9" />
                             </h:inputText>
                         </div>
@@ -56,7 +56,7 @@
                     <div class="form-group">
                         <h:outputLabel value="Intensidad Horaria: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
-                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.ih}" pt:placeholder="Intensidad Horaria" required="true" maxlength="1" requiredMessage="Error en la intensidad horaria" validatorMessage="Error, Solo se Aceptan digitos" class="form-control">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.ih}" pt:placeholder="Intensidad Horaria" required="true" maxlength="1" requiredMessage="Error en la intensidad horaria" validatorMessage="Error, Solo se Aceptan digitos en la intensidad horaria" class="form-control">
                                 <f:validateDoubleRange minimum="1" maximum="9" />
                             </h:inputText>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <h:outputLabel value="Semestre: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
-                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.semestre}" pt:placeholder="Semestre" required="true" maxlength="1" requiredMessage="Error en el Semestre" validatorMessage="Error, Solo se Aceptan digitos" class="form-control">
+                            <h:inputText value="#{adicionarMateriaController.nuevaMateria.semestre}" pt:placeholder="Semestre" required="true" maxlength="1" requiredMessage="Error en el Semestre" validatorMessage="Error, Solo se Aceptan digitos en el semestre" class="form-control">
                                 <f:validateDoubleRange minimum="1" maximum="9" />
                             </h:inputText>
                         </div>
