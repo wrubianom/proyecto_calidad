@@ -37,7 +37,9 @@
                     <p:column headerText="Nombre" sortBy="#{varAdmin.nombre}">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varAdmin.nombre}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varAdmin.nombre}" style="width:100%"/></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varAdmin.nombre}" style="width:100%" validatorMessage="Error, Solo se Aceptan Letras">
+                                    <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                            </f:facet>
                         </p:cellEditor> 
                     </p:column>
                     <p:column headerText="Tipo" sortBy="#{varAdmin.tipo}">
