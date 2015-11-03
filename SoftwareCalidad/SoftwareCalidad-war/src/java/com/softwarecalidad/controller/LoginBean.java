@@ -84,7 +84,7 @@ public class LoginBean implements Serializable {
                     return "HOME";
                 } else {
                     UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error al autenticar ... Ingrege nuevamente sus credenciales");
-                    return "LOGIN_FAIL";
+                    return "";
                 }
             }
         } catch (Exception e) {
