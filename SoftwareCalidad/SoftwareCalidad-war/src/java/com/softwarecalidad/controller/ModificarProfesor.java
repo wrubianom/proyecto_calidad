@@ -59,6 +59,7 @@ public class ModificarProfesor implements Serializable {
         try {
             profesores.remove(profesor);
             profesorEJB.eliminarProfesor(profesor);
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Profesor se ha Eliminado");
         } catch (Exception ex) {
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage());
         }

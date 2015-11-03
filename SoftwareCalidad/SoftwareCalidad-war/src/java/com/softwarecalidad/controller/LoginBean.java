@@ -98,6 +98,7 @@ public class LoginBean implements Serializable {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         req.getSession().invalidate();
         FacesContext.getCurrentInstance().getViewRoot().getViewMap().remove("usuario");
+        UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "Cerrando Sesión");
         return "LOGIN";
     }
 

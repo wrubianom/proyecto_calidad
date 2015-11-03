@@ -57,6 +57,7 @@ public class ModificarAdministradorController {
         try {
             usuarios.remove(usuario);
             adminEJB.eliminarUsuario(usuario);
+            UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Usuario se ha Eliminado");
         } catch (Exception ex) {
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage());
         }

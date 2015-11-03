@@ -51,7 +51,7 @@ public class AdicionarProfesor implements Serializable {
                     UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_INFO, "El Profesor ha sido Agregado");
                     nuevoProfesor = new Profesor();
                 } else {
-                    UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error verifique los datos del profesor");
+                    UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, "Error el Profesor ya ha sido Creado");
                 }
             }
         } catch (Exception ex) {
