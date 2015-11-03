@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <h:outputLabel for="idCodigo" value="Ingrese el Codigo: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4 col-sm-4">
-                            <h:inputText id="idCodigo" value="#{adicionarProfesor.nuevoProfesor.codigo}" pt:placeholder="Codigo" title="Codigo del Profesor"  validatorMessage="Error, Solo se Aceptan Digitos"  required="true" requiredMessage="Error en el Codigo" class="form-control">
+                            <h:inputText id="idCodigo" value="#{adicionarProfesor.nuevoProfesor.codigo}" pt:placeholder="Codigo" title="Codigo del Profesor"  validatorMessage="Error, Solo se Aceptan Digitos mayores a 1000" maxlength="10" required="true" requiredMessage="Error en el Codigo" class="form-control">
                                 <f:validateDoubleRange minimum="1000" maximum="10000000000" />
                             </h:inputText>
                         </div>
