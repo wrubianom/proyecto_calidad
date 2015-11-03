@@ -158,28 +158,6 @@ public class UsuarioBean {
             this.setIsLoggin(false);
             UtilFaces.getFacesUtil().addMessage(FacesMessage.SEVERITY_ERROR, e.getMessage());
         }
-        //UsuarioFacade usuarioFacade = new UsuarioFacade();
-        //usuario = usuarioFacade.findUsuarioByLogin(user, password);
-
-        /* if (usuario.getEstado().equals('I')) {
-         addMessage(FacesMessage.SEVERITY_ERROR, "Usuario Inactivo, por favor comuniquese con el administrador", null);
-         return null;
-         }*/
-        //  this.setIsLoggin(true);
-        //if (usuario.getIdPerfil().getId() == 2 || usuario.getIdPerfil().getId() == 1) {
-
-        /*} else if (usuario.getIdPerfil().getId() == 3) {
-         path = "/pages/privadas/registro/";
-         return path + "solicitudes.xhtml?faces-redirect=true";
-         } else if (usuario.getIdPerfil().getId() == 4) {
-         path = "/pages/privadas/consulta/";
-         return path + "solicitudes.xhtml?faces-redirect=true";
-         }*/
-        /*} else {
-         addMessage(FacesMessage.SEVERITY_ERROR, "Credenciales no validas o Usuario no Existe", null);
-         this.setIsLoggin(false);
-         }
-         return null;*/
         return null;
     }
 
