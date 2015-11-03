@@ -38,7 +38,7 @@
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{varAdmin.nombre}" /></f:facet>
                             <f:facet name="input"><p:inputText value="#{varAdmin.nombre}" style="width:100%" validatorMessage="Error, Solo se Aceptan Letras">
-                                    <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                                    <f:validateRegex pattern="^[a-zA-Z ñáéíóú]+$"/>
                             </f:facet>
                         </p:cellEditor> 
                     </p:column>
