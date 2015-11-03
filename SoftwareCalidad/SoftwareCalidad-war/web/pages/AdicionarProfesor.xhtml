@@ -31,7 +31,7 @@
                         <h:outputLabel for="idNombre" value="Ingrese el Nombre: " styleClass="col-lg-2 control-label"></h:outputLabel>
                         <div class="col-lg-4">
                             <h:inputText id="idNombre" value="#{adicionarProfesor.nuevoProfesor.nombre}" pt:placeholder="Nombre" title="Nombre del Profesor" maxlength="10" required="true" requiredMessage="Error en el Nombre" validatorMessage="Error, Solo se Aceptan Letras" class="form-control">
-                                <f:validateRegex pattern="^[a-zA-Z]+$" />
+                                <f:validateRegex pattern="^[a-zA-Z ñáéíóú]+$" />
                             </h:inputText>
                         </div>
                         <div class="col-lg-4">
