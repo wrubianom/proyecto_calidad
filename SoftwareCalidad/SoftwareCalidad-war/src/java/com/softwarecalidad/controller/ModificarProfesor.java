@@ -45,6 +45,7 @@ public class ModificarProfesor implements Serializable {
 
     public void cargarProfesores() {
         try {
+            profesores.clear();
             List<Profesor> findAll = profesorEJB.findAllProfesor();
             if (findAll != null) {
                 profesores.addAll(findAll);

@@ -26,15 +26,14 @@
                     </f:facet>
 
                     <p:column headerText="Codigo" sortBy="#{varProfesor.codigo}">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{varProfesor.codigo}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varProfesor.codigo}" style="width:100%"/></f:facet>
-                        </p:cellEditor> 
+                        <h:outputText value="#{varProfesor.codigo}" />
                     </p:column>
                     <p:column headerText="Nombre" sortBy="#{varProfesor.nombre}">
                         <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{varProfesor.nombre}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{varProfesor.nombre}" style="width:100%"/></f:facet>
+                            <f:facet name="output"><h:outputText value="#{varProfesor.nombre}"/></f:facet>
+                            <f:facet name="input"><p:inputText value="#{varProfesor.nombre}" style="width:100%" validatorMessage="Error, Solo se Aceptan Letras">
+                                    <f:validateRegex pattern="^[a-zA-Z]+$" />
+                                </p:inputText></f:facet>
                         </p:cellEditor> 
                     </p:column>
                     <p:column headerText="Tipo de Contrato" sortBy="#{varProfesor.tipoContrato}">
